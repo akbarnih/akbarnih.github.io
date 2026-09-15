@@ -1,958 +1,1758 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Akbar Nubijak — Creative Portfolio</title>
+<title>Akbar Nubijak — Creative Designer</title>
 
-<meta name="description" content="Portfolio Akbar Nubijak — Graphic Designer, Photographer & Creative">
-<meta name="author" content="Akbar Nubijak">
+<meta
+name="description"
+content="Akbar Nubijak — Graphic Designer, Photographer & Creative"
+/>
 
-<!-- GOOGLE FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
 /* =========================================================
-   RESET
+RESET
 ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background: #080808;
-    color: #f5f5f5;
-    line-height: 1.6;
-    overflow-x: hidden;
+body{
+    background:#0a0a0a;
+    color:#f5f5f5;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-button {
-    font-family: inherit;
+button{
+    font-family:inherit;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+img{
+    display:block;
+    width:100%;
+}
+
+::selection{
+    background:#fff;
+    color:#000;
 }
 
 
 /* =========================================================
-   VARIABLES
+VARIABLE
 ========================================================= */
 
-:root {
-    --bg: #080808;
-    --bg2: #101010;
-    --card: #151515;
-    --card2: #1b1b1b;
-    --text: #f5f5f5;
-    --muted: #9a9a9a;
-    --line: rgba(255,255,255,0.10);
-    --accent: #ffffff;
-    --radius: 22px;
+:root{
+
+    --black:#0a0a0a;
+    --white:#f5f5f5;
+    --gray:#8b8b8b;
+    --dark-gray:#181818;
+    --line:rgba(255,255,255,.12);
+
+    --display:"Manrope",sans-serif;
+
 }
 
 
 /* =========================================================
-   CUSTOM SCROLLBAR
+CURSOR
 ========================================================= */
 
-::-webkit-scrollbar {
-    width: 8px;
+.cursor{
+    position:fixed;
+
+    width:12px;
+    height:12px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    transform:translate(-50%,-50%);
+
+    mix-blend-mode:difference;
+
+    transition:
+    width .3s ease,
+    height .3s ease;
 }
 
-::-webkit-scrollbar-track {
-    background: #080808;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 20px;
+.cursor.active{
+    width:70px;
+    height:70px;
 }
 
 
 /* =========================================================
-   GLOBAL
+GLOBAL
 ========================================================= */
 
-.container {
-    width: min(1180px, 90%);
-    margin: auto;
+.container{
+    width:min(1320px,90%);
+    margin:auto;
 }
 
-section {
-    padding: 120px 0;
+section{
+    position:relative;
 }
 
-.section-label {
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 12px;
-    margin-bottom: 15px;
+.label{
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    color:#777;
 }
 
-.section-title {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(38px, 6vw, 76px);
-    line-height: 1;
-    margin-bottom: 25px;
-    letter-spacing: -3px;
-}
-
-.section-desc {
-    color: var(--muted);
-    max-width: 650px;
+.display{
+    font-family:var(--display);
 }
 
 
 /* =========================================================
-   NAVBAR
+NAVBAR
 ========================================================= */
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 78px;
-    z-index: 999;
+.navbar{
 
-    background: rgba(8,8,8,0.75);
-    backdrop-filter: blur(20px);
+    position:fixed;
 
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    padding:28px 0;
+
+    transition:.4s;
+
 }
 
-.nav-inner {
-    width: min(1180px, 90%);
-    height: 100%;
-    margin: auto;
+.navbar.scrolled{
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background:rgba(10,10,10,.8);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid var(--line);
+
 }
 
-.logo {
-    font-family: "Space Grotesk";
-    font-weight: 700;
-    font-size: 20px;
+.nav-inner{
+
+    width:min(1320px,90%);
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
 }
 
-.logo span {
-    color: #888;
+.logo{
+
+    font-family:var(--display);
+
+    font-size:18px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
 }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
+.logo span{
+    color:#666;
 }
 
-.nav-links a {
-    font-size: 14px;
-    color: #aaa;
-    transition: .3s;
+.nav-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+
 }
 
-.nav-links a:hover {
-    color: white;
+.nav-menu a{
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    color:#999;
+
+    transition:.3s;
+
 }
 
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
+.nav-menu a:hover{
+    color:#fff;
+}
+
+.nav-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:11px;
+
+    color:#888;
+
+}
+
+.status-dot{
+
+    width:6px;
+    height:6px;
+
+    background:#fff;
+
+    border-radius:50%;
+
 }
 
 
 /* =========================================================
-   HERO
+HERO
 ========================================================= */
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+.hero{
 
-    position: relative;
-    overflow: hidden;
+    min-height:100vh;
 
-    padding-top: 100px;
+    display:flex;
+
+    align-items:center;
+
+    padding-top:100px;
+
+    overflow:hidden;
+
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
+.hero-bg-text{
 
-    width: 500px;
-    height: 500px;
+    position:absolute;
 
-    background: white;
-    filter: blur(180px);
-    opacity: .06;
+    left:-30px;
+    bottom:-80px;
 
-    top: 20%;
-    right: -200px;
+    font-family:var(--display);
+
+    font-size:clamp(160px,24vw,390px);
+
+    font-weight:800;
+
+    line-height:.7;
+
+    color:#101010;
+
+    white-space:nowrap;
+
+    pointer-events:none;
+
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
 }
 
-.hero-small {
-    color: #888;
-    font-size: 14px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.hero-top{
 
-    margin-bottom: 25px;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
 }
 
-.hero-title {
-    font-family: "Space Grotesk";
-    font-size: clamp(55px, 10vw, 140px);
-    line-height: .85;
-    letter-spacing: -7px;
-    max-width: 1000px;
+.hero-location{
+
+    color:#777;
+
+    font-size:12px;
+
 }
 
-.hero-title span {
-    color: #777;
+.hero-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(70px,12vw,175px);
+
+    font-weight:800;
+
+    line-height:.78;
+
+    letter-spacing:-9px;
+
+    text-transform:uppercase;
+
 }
 
-.hero-desc {
-    max-width: 550px;
-    color: #999;
-    margin-top: 35px;
-    font-size: 17px;
+.hero-title .outline{
+
+    color:transparent;
+
+    -webkit-text-stroke:1px #777;
+
 }
 
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 35px;
-    flex-wrap: wrap;
+.hero-description{
+
+    max-width:500px;
+
+    margin-top:50px;
+
+    margin-left:auto;
+
+    margin-right:10%;
+
+    color:#888;
+
+    font-size:15px;
+
+    line-height:1.8;
+
 }
 
-.btn {
-    padding: 14px 22px;
-    border-radius: 100px;
+.hero-bottom{
 
-    border: 1px solid var(--line);
+    display:flex;
 
-    font-size: 14px;
-    transition: .3s;
-    display: inline-block;
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-top:70px;
+
 }
 
-.btn-primary {
-    background: white;
-    color: black;
+.hero-scroll{
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    color:#666;
+
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
+.hero-scroll span{
+
+    display:inline-block;
+
+    margin-left:10px;
+
+    animation:arrowMove 1.5s infinite;
+
 }
 
-.btn-outline:hover {
-    background: white;
-    color: black;
+@keyframes arrowMove{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(7px);
+    }
+
 }
 
-.scroll-down {
-    position: absolute;
-    bottom: 35px;
-    left: 0;
+.hero-year{
 
-    color: #666;
-    font-size: 12px;
-    letter-spacing: 2px;
+    color:#555;
+
+    font-size:11px;
+
 }
 
 
 /* =========================================================
-   ABOUT
+MARQUEE
 ========================================================= */
 
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
-    align-items: center;
+.marquee{
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+    overflow:hidden;
+
+    padding:25px 0;
+
+    white-space:nowrap;
+
 }
 
-.profile-box {
-    position: relative;
+.marquee-track{
+
+    display:inline-flex;
+
+    gap:50px;
+
+    animation:marquee 25s linear infinite;
+
 }
 
-.profile-image {
-    width: 100%;
-    aspect-ratio: 4/5;
+.marquee-item{
 
-    border-radius: var(--radius);
-    overflow: hidden;
+    font-family:var(--display);
 
-    background: linear-gradient(135deg,#222,#0c0c0c);
+    font-size:24px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-weight:700;
 
-    color: #555;
+    color:#555;
+
 }
 
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.marquee-item span{
+    color:#fff;
 }
 
-.profile-placeholder {
-    text-align: center;
-}
+@keyframes marquee{
 
-.profile-placeholder span {
-    display: block;
-    font-size: 60px;
-    margin-bottom: 10px;
-}
+    from{
+        transform:translateX(0);
+    }
 
-.about-text p {
-    color: #aaa;
-    margin-bottom: 20px;
-    font-size: 17px;
-}
+    to{
+        transform:translateX(-50%);
+    }
 
-.info-grid {
-    margin-top: 35px;
-
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-}
-
-.info-item {
-    border-top: 1px solid var(--line);
-    padding-top: 15px;
-}
-
-.info-item small {
-    color: #666;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.info-item strong {
-    font-size: 14px;
 }
 
 
 /* =========================================================
-   SKILLS
+ABOUT
 ========================================================= */
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-    margin-top: 60px;
+.about{
+
+    padding:180px 0;
+
 }
 
-.skill-card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 35px;
+.about-grid{
 
-    transition: .35s;
+    display:grid;
+
+    grid-template-columns:1fr 2fr;
+
+    gap:100px;
+
 }
 
-.skill-card:hover {
-    transform: translateY(-7px);
-    background: var(--card2);
+.about-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(40px,6vw,85px);
+
+    font-weight:700;
+
+    line-height:.95;
+
+    letter-spacing:-4px;
+
 }
 
-.skill-number {
-    color: #555;
-    font-size: 13px;
-    margin-bottom: 30px;
+.about-title span{
+    color:#555;
 }
 
-.skill-card h3 {
-    font-family: "Space Grotesk";
-    font-size: 25px;
-    margin-bottom: 12px;
+.about-text{
+
+    max-width:720px;
+
+    margin-left:auto;
+
 }
 
-.skill-card p {
-    color: #888;
+.about-text p{
+
+    color:#999;
+
+    font-size:20px;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+}
+
+.about-meta{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-top:70px;
+
+}
+
+.meta{
+
+    border-top:1px solid var(--line);
+
+    padding-top:15px;
+
+}
+
+.meta small{
+
+    color:#555;
+
+    display:block;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+
+}
+
+.meta strong{
+
+    font-size:13px;
+
+    font-weight:500;
+
 }
 
 
 /* =========================================================
-   SOFTWARE
+ABOUT IMAGE
 ========================================================= */
 
-.software-list {
-    margin-top: 50px;
+.about-image{
 
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
+    margin-top:120px;
+
+    height:70vh;
+
+    overflow:hidden;
+
+    position:relative;
+
 }
 
-.software {
-    border: 1px solid var(--line);
-    border-radius: 15px;
+.about-image img{
 
-    padding: 20px;
+    height:120%;
 
-    background: #101010;
+    object-fit:cover;
 
-    transition: .3s;
+    filter:grayscale(100%);
+
+    transform:translateY(-10%);
+
 }
 
-.software:hover {
-    background: white;
-    color: black;
-    transform: translateY(-4px);
-}
+.image-caption{
 
-.software strong {
-    display: block;
-    margin-bottom: 5px;
-}
+    position:absolute;
 
-.software span {
-    color: #777;
-    font-size: 12px;
-}
+    bottom:25px;
 
-.software:hover span {
-    color: #555;
+    left:25px;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
 }
 
 
 /* =========================================================
-   PORTFOLIO
+SERVICES
 ========================================================= */
 
-.portfolio-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 30px;
+.services{
+
+    padding:150px 0;
+
 }
 
-.filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+.services-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:80px;
+
 }
 
-.filter-btn {
-    border: 1px solid var(--line);
-    background: transparent;
-    color: #888;
+.services-title{
 
-    padding: 10px 17px;
-    border-radius: 100px;
+    font-family:var(--display);
 
-    cursor: pointer;
-    transition: .3s;
+    font-size:clamp(60px,9vw,130px);
+
+    letter-spacing:-7px;
+
+    line-height:.8;
+
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background: white;
-    color: black;
+.services-description{
+
+    max-width:300px;
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.7;
+
 }
 
-.portfolio-grid {
-    margin-top: 60px;
+.service-row{
 
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
+    display:grid;
+
+    grid-template-columns:100px 1fr 100px;
+
+    align-items:center;
+
+    border-top:1px solid var(--line);
+
+    padding:35px 0;
+
+    transition:.4s;
+
 }
 
-.project {
-    position: relative;
-    overflow: hidden;
+.service-row:last-child{
 
-    border-radius: var(--radius);
+    border-bottom:1px solid var(--line);
 
-    cursor: pointer;
-
-    background: #151515;
-
-    aspect-ratio: 4/3;
 }
 
-.project img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.service-row:hover{
 
-    transition: .6s;
+    padding-left:20px;
+
+    padding-right:20px;
+
+    background:#111;
+
 }
 
-.project:hover img {
-    transform: scale(1.06);
+.service-number{
+
+    color:#555;
+
+    font-size:11px;
+
 }
 
-.project-overlay {
-    position: absolute;
-    inset: 0;
+.service-name{
 
-    background: linear-gradient(
-        transparent 30%,
-        rgba(0,0,0,.9)
-    );
+    font-family:var(--display);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+    font-size:clamp(28px,4vw,55px);
 
-    padding: 30px;
+    font-weight:600;
 
-    opacity: 0;
-    transition: .4s;
+    letter-spacing:-2px;
+
 }
 
-.project:hover .project-overlay {
-    opacity: 1;
-}
+.service-arrow{
 
-.project-overlay h3 {
-    font-family: "Space Grotesk";
-    font-size: 28px;
-}
+    text-align:right;
 
-.project-overlay p {
-    color: #aaa;
-    font-size: 13px;
+    color:#666;
+
+    font-size:25px;
+
 }
 
 
 /* =========================================================
-   PLACEHOLDER PROJECT
+WORK HEADER
 ========================================================= */
 
-.project-placeholder {
-    width: 100%;
-    height: 100%;
+.work{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding:180px 0;
+
+}
+
+.work-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:100px;
+
+}
+
+.work-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(70px,12vw,170px);
+
+    line-height:.75;
+
+    letter-spacing:-10px;
+
+}
+
+.work-count{
+
+    color:#666;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+PROJECT
+========================================================= */
+
+.project{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    position:relative;
+
+    margin-bottom:100px;
+
+}
+
+.project-image{
+
+    width:78%;
+
+    height:82vh;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#151515;
+
+}
+
+.project-image img{
+
+    width:100%;
+
+    height:110%;
+
+    object-fit:cover;
+
+    filter:grayscale(100%);
+
+    transition:1s;
+
+}
+
+.project:hover .project-image img{
+
+    transform:scale(1.04);
+
+    filter:grayscale(0%);
+
+}
+
+.project-placeholder{
+
+    width:100%;
+    height:100%;
+
+    min-height:500px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 
     background:
-        radial-gradient(
-            circle at center,
-            #292929,
-            #101010 65%
-        );
 
-    color: #555;
+    radial-gradient(
+        circle at center,
+        #292929,
+        #111 60%,
+        #090909
+    );
 
-    font-family: "Space Grotesk";
-    font-size: 22px;
+    font-family:var(--display);
+
+    font-size:clamp(40px,7vw,100px);
+
+    color:#333;
+
 }
 
+.project-info{
 
-/* =========================================================
-   EXPERIENCE
-========================================================= */
+    position:absolute;
 
-.timeline {
-    margin-top: 70px;
+    right:0;
+
+    bottom:80px;
+
+    width:35%;
+
+    background:#0a0a0a;
+
+    padding:35px;
+
+    z-index:3;
+
 }
 
-.timeline-item {
-    display: grid;
-    grid-template-columns: 180px 1fr;
+.project-number{
 
-    border-top: 1px solid var(--line);
+    color:#555;
 
-    padding: 35px 0;
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    margin-bottom:25px;
+
 }
 
-.timeline-date {
-    color: #666;
-    font-size: 13px;
+.project-name{
+
+    font-family:var(--display);
+
+    font-size:clamp(35px,5vw,70px);
+
+    line-height:.9;
+
+    letter-spacing:-4px;
+
+    margin-bottom:20px;
+
 }
 
-.timeline-content h3 {
-    font-family: "Space Grotesk";
-    font-size: 27px;
-    margin-bottom: 8px;
+.project-category{
+
+    color:#777;
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
 }
 
-.timeline-content p {
-    color: #888;
-    max-width: 650px;
+.project-view{
+
+    margin-top:40px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border-bottom:1px solid #555;
+
+    padding-bottom:8px;
+
+    font-size:12px;
+
+    transition:.3s;
+
 }
 
+.project-view:hover{
 
-/* =========================================================
-   ACHIEVEMENT
-========================================================= */
+    gap:25px;
 
-.achievement-grid {
-    margin-top: 60px;
-
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-
-.achievement {
-    border: 1px solid var(--line);
-    padding: 35px;
-    border-radius: var(--radius);
-
-    background: var(--card);
-
-    transition: .3s;
-}
-
-.achievement:hover {
-    transform: translateY(-7px);
-}
-
-.achievement-number {
-    font-size: 50px;
-    font-family: "Space Grotesk";
-    color: #444;
-}
-
-.achievement h3 {
-    margin: 20px 0 8px;
-    font-size: 19px;
-}
-
-.achievement p {
-    color: #777;
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   SERVICES
-========================================================= */
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-
-    margin-top: 60px;
-}
-
-.service {
-    padding: 35px;
-
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-
-    min-height: 240px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    transition: .3s;
-}
-
-.service:hover {
-    background: white;
-    color: black;
-    transform: translateY(-7px);
-}
-
-.service-number {
-    color: #555;
-}
-
-.service h3 {
-    font-family: "Space Grotesk";
-    font-size: 27px;
-}
-
-.service p {
-    color: #777;
-}
-
-.service:hover p {
-    color: #555;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact {
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact .section-desc {
-    margin: auto;
-}
-
-.contact-title {
-    font-family: "Space Grotesk";
-    font-size: clamp(45px,8vw,100px);
-    letter-spacing: -5px;
-    line-height: .9;
-
-    margin: 30px auto;
-}
-
-.contact-email {
-    display: inline-block;
-
-    font-size: clamp(18px,3vw,30px);
-
-    border-bottom: 1px solid #555;
-
-    padding-bottom: 8px;
-
-    transition: .3s;
-}
-
-.contact-email:hover {
-    border-color: white;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    border-top: 1px solid var(--line);
-
-    padding: 30px 0;
-
-    color: #666;
-
-    font-size: 13px;
-}
-
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.socials {
-    display: flex;
-    gap: 20px;
-}
-
-.socials a {
-    transition: .3s;
-}
-
-.socials a:hover {
-    color: white;
-}
-
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
-
-.lightbox {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,.95);
-
-    z-index: 9999;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox-content {
-    max-width: 1100px;
-    width: 100%;
-}
-
-.lightbox img {
-    max-height: 80vh;
-    width: auto;
-    max-width: 100%;
-    margin: auto;
-    border-radius: 15px;
-}
-
-.close-lightbox {
-    position: absolute;
-    top: 25px;
-    right: 35px;
-
-    font-size: 35px;
-
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1s ease;
-}
-
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:900px) {
-
-    .nav-links {
-        position: fixed;
-
-        top: 78px;
-        left: 0;
-
-        width: 100%;
-
-        background: #080808;
-
-        padding: 30px;
-
-        flex-direction: column;
-
-        transform: translateY(-150%);
-        transition: .4s;
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-
-    .software-list {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .achievement-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .portfolio-header {
-        align-items: start;
-        flex-direction: column;
-    }
-}
-
-
-@media(max-width:600px) {
-
-    section {
-        padding: 80px 0;
-    }
-
-    .hero-title {
-        letter-spacing: -4px;
-    }
-
-    .skills-grid,
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .software-list {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .contact-title {
-        letter-spacing: -3px;
-    }
+    border-color:#fff;
 
 }
 
 
 /* =========================================================
-   CUSTOM SELECTION
+PROJECT ALTERNATE
 ========================================================= */
 
-::selection {
-    background: white;
-    color: black;
+.project:nth-child(even) .project-image{
+
+    margin-left:auto;
+
+}
+
+.project:nth-child(even) .project-info{
+
+    left:0;
+
+    right:auto;
+
+}
+
+
+/* =========================================================
+ACHIEVEMENTS
+========================================================= */
+
+.achievements{
+
+    padding:150px 0;
+
+    background:#f3f3f3;
+
+    color:#111;
+
+}
+
+.achievement-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:80px;
+
+}
+
+.achievement-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(60px,9vw,120px);
+
+    letter-spacing:-7px;
+
+    line-height:.8;
+
+}
+
+.achievement-intro{
+
+    color:#666;
+
+    max-width:300px;
+
+    font-size:13px;
+
+}
+
+.award{
+
+    display:grid;
+
+    grid-template-columns:100px 1fr 200px;
+
+    align-items:center;
+
+    padding:35px 0;
+
+    border-top:1px solid rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.award:last-child{
+
+    border-bottom:1px solid rgba(0,0,0,.15);
+
+}
+
+.award:hover{
+
+    padding-left:20px;
+
+    padding-right:20px;
+
+}
+
+.award-number{
+
+    color:#888;
+
+    font-size:12px;
+
+}
+
+.award-name{
+
+    font-family:var(--display);
+
+    font-size:clamp(20px,3vw,35px);
+
+    font-weight:600;
+
+}
+
+.award-place{
+
+    color:#666;
+
+    font-size:12px;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+EXPERIENCE
+========================================================= */
+
+.experience{
+
+    padding:180px 0;
+
+}
+
+.experience-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 2fr;
+
+    gap:100px;
+
+}
+
+.experience-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(55px,8vw,110px);
+
+    line-height:.85;
+
+    letter-spacing:-6px;
+
+}
+
+.timeline{
+
+    border-top:1px solid var(--line);
+
+}
+
+.timeline-item{
+
+    display:grid;
+
+    grid-template-columns:130px 1fr;
+
+    gap:40px;
+
+    padding:40px 0;
+
+    border-bottom:1px solid var(--line);
+
+}
+
+.timeline-year{
+
+    color:#555;
+
+    font-size:11px;
+
+}
+
+.timeline-content h3{
+
+    font-family:var(--display);
+
+    font-size:28px;
+
+    margin-bottom:12px;
+
+}
+
+.timeline-content p{
+
+    color:#777;
+
+    max-width:600px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+TOOLS
+========================================================= */
+
+.tools{
+
+    padding:120px 0;
+
+    border-top:1px solid var(--line);
+
+}
+
+.tools-title{
+
+    font-family:var(--display);
+
+    font-size:18px;
+
+    margin-bottom:40px;
+
+}
+
+.tools-grid{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.tool{
+
+    padding:15px 20px;
+
+    border:1px solid var(--line);
+
+    border-radius:100px;
+
+    color:#888;
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+.tool:hover{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+
+/* =========================================================
+CONTACT
+========================================================= */
+
+.contact{
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:150px 0;
+
+}
+
+.contact-content{
+
+    width:100%;
+
+}
+
+.contact-label{
+
+    margin-bottom:40px;
+
+}
+
+.contact-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(65px,13vw,190px);
+
+    line-height:.75;
+
+    letter-spacing:-11px;
+
+    font-weight:800;
+
+}
+
+.contact-title span{
+
+    color:#555;
+
+}
+
+.contact-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-top:80px;
+
+}
+
+.contact-email{
+
+    font-family:var(--display);
+
+    font-size:clamp(20px,3vw,35px);
+
+    border-bottom:1px solid #555;
+
+    padding-bottom:10px;
+
+    transition:.3s;
+
+}
+
+.contact-email:hover{
+
+    border-color:#fff;
+
+}
+
+.contact-socials{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+.contact-socials a{
+
+    color:#777;
+
+    font-size:12px;
+
+}
+
+.contact-socials a:hover{
+
+    color:#fff;
+
+}
+
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer{
+
+    border-top:1px solid var(--line);
+
+    padding:30px 0;
+
+}
+
+.footer-inner{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.footer-copy{
+
+    color:#555;
+
+    font-size:11px;
+
+}
+
+.footer-back{
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+
+    opacity 1s ease,
+
+    transform 1s cubic-bezier(.16,1,.3,1);
+
+}
+
+.reveal.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* =========================================================
+LOADER
+========================================================= */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#0a0a0a;
+
+    z-index:999999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:1s;
+
+}
+
+.loader.hide{
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+.loader-text{
+
+    font-family:var(--display);
+
+    font-size:clamp(30px,5vw,70px);
+
+    font-weight:800;
+
+}
+
+.loader-text span{
+
+    color:#555;
+
+}
+
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav-menu{
+
+        display:none;
+
+    }
+
+    .hero-title{
+
+        letter-spacing:-5px;
+
+    }
+
+    .hero-description{
+
+        margin-left:0;
+
+        margin-right:0;
+
+    }
+
+    .about-grid,
+
+    .experience-grid{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+    }
+
+    .about-meta{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .services-header,
+
+    .work-header,
+
+    .achievement-header{
+
+        flex-direction:column;
+
+        align-items:start;
+
+        gap:30px;
+
+    }
+
+    .service-row{
+
+        grid-template-columns:50px 1fr 40px;
+
+    }
+
+    .project-image{
+
+        width:100%;
+
+        height:70vh;
+
+    }
+
+    .project-info{
+
+        width:80%;
+
+        bottom:30px;
+
+    }
+
+    .project:nth-child(even) .project-info{
+
+        left:auto;
+
+        right:0;
+
+    }
+
+    .award{
+
+        grid-template-columns:60px 1fr;
+
+        gap:20px;
+
+    }
+
+    .award-place{
+
+        grid-column:2;
+
+        text-align:left;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .cursor{
+
+        display:none;
+
+    }
+
+    .container{
+
+        width:88%;
+
+    }
+
+    .navbar{
+
+        padding:20px 0;
+
+    }
+
+    .hero{
+
+        min-height:90vh;
+
+    }
+
+    .hero-title{
+
+        font-size:18vw;
+
+        letter-spacing:-5px;
+
+    }
+
+    .hero-top{
+
+        margin-bottom:25px;
+
+    }
+
+    .hero-description{
+
+        font-size:14px;
+
+        margin-top:35px;
+
+    }
+
+    .hero-bottom{
+
+        margin-top:50px;
+
+    }
+
+    .about{
+
+        padding:110px 0;
+
+    }
+
+    .about-title{
+
+        font-size:55px;
+
+    }
+
+    .about-text p{
+
+        font-size:17px;
+
+    }
+
+    .about-image{
+
+        height:55vh;
+
+        margin-top:80px;
+
+    }
+
+    .services{
+
+        padding:100px 0;
+
+    }
+
+    .services-title{
+
+        font-size:70px;
+
+        letter-spacing:-5px;
+
+    }
+
+    .service-row{
+
+        grid-template-columns:40px 1fr 30px;
+
+        padding:25px 0;
+
+    }
+
+    .service-name{
+
+        font-size:25px;
+
+    }
+
+    .work{
+
+        padding:100px 0;
+
+    }
+
+    .work-title{
+
+        font-size:85px;
+
+        letter-spacing:-6px;
+
+    }
+
+    .project{
+
+        min-height:auto;
+
+        margin-bottom:70px;
+
+    }
+
+    .project-image{
+
+        height:60vh;
+
+    }
+
+    .project-info{
+
+        width:88%;
+
+        padding:25px;
+
+        bottom:20px;
+
+    }
+
+    .project-name{
+
+        font-size:45px;
+
+    }
+
+    .achievements{
+
+        padding:100px 0;
+
+    }
+
+    .achievement-title{
+
+        font-size:70px;
+
+    }
+
+    .experience{
+
+        padding:100px 0;
+
+    }
+
+    .experience-title{
+
+        font-size:70px;
+
+    }
+
+    .timeline-item{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+    .contact{
+
+        min-height:80vh;
+
+        padding:100px 0;
+
+    }
+
+    .contact-title{
+
+        font-size:20vw;
+
+        letter-spacing:-7px;
+
+    }
+
+    .contact-bottom{
+
+        flex-direction:column;
+
+        align-items:start;
+
+        gap:40px;
+
+    }
+
+    .footer-inner{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        align-items:start;
+
+    }
+
 }
 
 </style>
@@ -963,44 +1763,62 @@ footer {
 
 
 <!-- ======================================================
-     NAVBAR
+LOADER
 ====================================================== -->
 
-<nav class="navbar">
+<div class="loader" id="loader">
+
+<div class="loader-text">
+
+AKBAR<span>.</span>
+
+</div>
+
+</div>
+
+
+<!-- ======================================================
+CURSOR
+====================================================== -->
+
+<div class="cursor" id="cursor"></div>
+
+
+<!-- ======================================================
+NAVBAR
+====================================================== -->
+
+<nav class="navbar" id="navbar">
 
 <div class="nav-inner">
 
 <a href="#home" class="logo">
+
 AKBAR<span>.</span>
+
 </a>
 
-<ul class="nav-links" id="navLinks">
 
-<li>
+<div class="nav-menu">
+
 <a href="#about">About</a>
-</li>
 
-<li>
-<a href="#skills">Skills</a>
-</li>
+<a href="#work">Work</a>
 
-<li>
-<a href="#portfolio">Portfolio</a>
-</li>
-
-<li>
 <a href="#experience">Experience</a>
-</li>
 
-<li>
 <a href="#contact">Contact</a>
-</li>
 
-</ul>
+</div>
 
-<button class="menu-btn" id="menuBtn">
-☰
-</button>
+
+<div class="nav-status">
+
+<div class="status-dot"></div>
+
+Available for creative work
+
+</div>
 
 </div>
 
@@ -1009,46 +1827,82 @@ AKBAR<span>.</span>
 
 
 <!-- ======================================================
-     HERO
+HERO
 ====================================================== -->
 
 <section class="hero" id="home">
+
+<div class="hero-bg-text">
+
+DESIGN
+
+</div>
+
 
 <div class="container">
 
 <div class="hero-content reveal">
 
-<div class="hero-small">
-Creative Portfolio / 2026
+
+<div class="hero-top">
+
+<div class="label">
+
+Portfolio / 2026
+
 </div>
+
+<div class="hero-location">
+
+Tangerang, Indonesia
+
+</div>
+
+</div>
+
 
 <h1 class="hero-title">
+
 AKBAR<br>
-<span>NUBIJAK.</span>
+
+<span class="outline">
+
+NUBIJAK
+
+</span>
+
 </h1>
 
-<p class="hero-desc">
-Graphic Designer, Photographer & Creative enthusiast
-yang berfokus pada visual yang menarik, komunikatif,
-dan relevan.
+
+<p class="hero-description">
+
+Graphic designer & visual creative
+with an interest in photography,
+videography, branding and digital
+content.
+
 </p>
 
-<div class="hero-buttons">
 
-<a href="#portfolio" class="btn btn-primary">
-View My Work →
-</a>
+<div class="hero-bottom">
 
-<a href="#contact" class="btn btn-outline">
-Let's Connect
-</a>
+<div class="hero-scroll">
+
+SCROLL TO EXPLORE
+
+<span>↓</span>
+
+</div>
+
+<div class="hero-year">
+
+DKV — 2026
 
 </div>
 
 </div>
 
-<div class="scroll-down">
-SCROLL TO EXPLORE ↓
+
 </div>
 
 </div>
@@ -1058,196 +1912,157 @@ SCROLL TO EXPLORE ↓
 
 
 <!-- ======================================================
-     ABOUT
+MARQUEE
 ====================================================== -->
 
-<section id="about">
+<div class="marquee">
+
+<div class="marquee-track">
+
+<div class="marquee-item">
+
+GRAPHIC DESIGN <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+PHOTOGRAPHY <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+VISUAL STORYTELLING <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+CREATIVE DIRECTION <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+GRAPHIC DESIGN <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+PHOTOGRAPHY <span>✦</span>
+
+</div>
+
+<div class="marquee-item">
+
+VISUAL STORYTELLING <span>✦</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ======================================================
+ABOUT
+====================================================== -->
+
+<section class="about" id="about">
 
 <div class="container">
 
 <div class="about-grid">
 
-<div class="profile-box reveal">
 
-<div class="profile-image">
+<div class="reveal">
 
-<!--
-GANTI DENGAN FOTO KAMU
+<div class="label">
 
-Contoh:
-
-<img src="images/profile.jpg" alt="Akbar Nubijak">
-
--->
-
-<div class="profile-placeholder">
-
-<span>✦</span>
-
-PHOTO<br>
-COMING SOON
+01 / About
 
 </div>
 
-</div>
+<br>
+
+<h2 class="about-title">
+
+Turning<br>
+
+ideas into<br>
+
+<span>visuals.</span>
+
+</h2>
 
 </div>
 
 
 <div class="about-text reveal">
 
-<div class="section-label">
-01 / About Me
-</div>
-
-<h2 class="section-title">
-Creating visual<br>
-with purpose.
-</h2>
-
 <p>
+
 Saya adalah siswa SMK PGRI 1 Tangerang
-jurusan Desain Komunikasi Visual yang memiliki
-ketertarikan pada desain grafis, fotografi,
-videografi, dan media sosial.
+jurusan Desain Komunikasi Visual yang
+memiliki ketertarikan pada desain grafis,
+fotografi, videografi dan media sosial.
+
 </p>
 
 <p>
-Saya senang mengubah ide menjadi visual yang
-menarik dan komunikatif, baik untuk kebutuhan
-event, branding, konten digital, maupun
-media promosi.
+
+Saya menikmati proses mengubah sebuah
+ide menjadi visual yang memiliki karakter,
+baik untuk kebutuhan event, branding,
+content maupun project kreatif.
+
 </p>
 
-<div class="info-grid">
 
-<div class="info-item">
-<small>NAME</small>
-<strong>Akbar Nubijak</strong>
-</div>
+<div class="about-meta">
 
-<div class="info-item">
+
+<div class="meta">
+
 <small>EDUCATION</small>
-<strong>SMK PGRI 1 Tangerang</strong>
+
+<strong>
+
+SMK PGRI 1 Tangerang
+
+</strong>
+
 </div>
 
-<div class="info-item">
+
+<div class="meta">
+
 <small>MAJOR</small>
-<strong>Desain Komunikasi Visual</strong>
-</div>
 
-<div class="info-item">
-<small>FOCUS</small>
-<strong>Graphic Design & Photography</strong>
-</div>
+<strong>
 
-</div>
+Desain Komunikasi Visual
 
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     SKILLS
-====================================================== -->
-
-<section id="skills">
-
-<div class="container">
-
-<div class="reveal">
-
-<div class="section-label">
-02 / Skills
-</div>
-
-<h2 class="section-title">
-What I do.
-</h2>
-
-<p class="section-desc">
-Beberapa bidang kreatif yang saya pelajari
-dan kembangkan melalui project sekolah,
-organisasi, maupun project pribadi.
-</p>
+</strong>
 
 </div>
 
 
-<div class="skills-grid">
+<div class="meta">
 
+<small>BASED IN</small>
 
-<div class="skill-card reveal">
+<strong>
 
-<div class="skill-number">
-01 — GRAPHIC DESIGN
-</div>
+Tangerang, Indonesia
 
-<h3>Graphic Design</h3>
-
-<p>
-Poster, social media feed, banner,
-twibbon, lanyard, event graphic,
-branding, packaging dan berbagai
-kebutuhan visual.
-</p>
+</strong>
 
 </div>
 
-
-<div class="skill-card reveal">
-
-<div class="skill-number">
-02 — PHOTOGRAPHY
-</div>
-
-<h3>Photography</h3>
-
-<p>
-Dokumentasi event, school photography,
-product photography, portrait,
-dan visual storytelling.
-</p>
-
-</div>
-
-
-<div class="skill-card reveal">
-
-<div class="skill-number">
-03 — VIDEOGRAPHY
-</div>
-
-<h3>Videography</h3>
-
-<p>
-Dokumentasi kegiatan, short movie,
-creative video, cinematic content
-dan social media video.
-</p>
-
-</div>
-
-
-<div class="skill-card reveal">
-
-<div class="skill-number">
-04 — CONTENT
-</div>
-
-<h3>Content Creation</h3>
-
-<p>
-Membuat konsep konten, desain feed,
-Instagram Story, visual campaign,
-dan social media content.
-</p>
 
 </div>
 
@@ -1255,285 +2070,34 @@ dan social media content.
 
 </div>
 
-</section>
 
 
+<div class="about-image reveal">
 
-<!-- ======================================================
-     SOFTWARE
-====================================================== -->
-
-<section>
-
-<div class="container">
-
-<div class="reveal">
-
-<div class="section-label">
-03 / Tools
-</div>
-
-<h2 class="section-title">
-Tools I use.
-</h2>
-
-</div>
-
-
-<div class="software-list reveal">
-
-<div class="software">
-<strong>Adobe Illustrator</strong>
-<span>Vector Design</span>
-</div>
-
-<div class="software">
-<strong>Adobe Photoshop</strong>
-<span>Photo & Graphic</span>
-</div>
-
-<div class="software">
-<strong>Adobe Premiere Pro</strong>
-<span>Video Editing</span>
-</div>
-
-<div class="software">
-<strong>After Effects</strong>
-<span>Motion Graphics</span>
-</div>
-
-<div class="software">
-<strong>Figma</strong>
-<span>UI / Prototype</span>
-</div>
-
-<div class="software">
-<strong>Canva</strong>
-<span>Graphic Design</span>
-</div>
-
-<div class="software">
-<strong>CapCut</strong>
-<span>Video Editing</span>
-</div>
-
-<div class="software">
-<strong>Lightroom</strong>
-<span>Photo Editing</span>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     PORTFOLIO
-====================================================== -->
-
-<section id="portfolio">
-
-<div class="container">
-
-<div class="portfolio-header reveal">
-
-<div>
-
-<div class="section-label">
-04 / Selected Work
-</div>
-
-<h2 class="section-title">
-My work.
-</h2>
-
-</div>
-
-
-<div class="filters">
-
-<button class="filter-btn active" data-filter="all">
-All
-</button>
-
-<button class="filter-btn" data-filter="design">
-Design
-</button>
-
-<button class="filter-btn" data-filter="photo">
-Photography
-</button>
-
-<button class="filter-btn" data-filter="video">
-Video
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="portfolio-grid">
-
-
-<!-- PROJECT 1 -->
-
-<div class="project reveal"
-data-category="design"
-onclick="openProject(this)">
+<!-- FOTO PROFIL / FOTO KAMU -->
 
 <!--
-GANTI BAGIAN INI:
 
-<div class="project-placeholder">
+GANTI DENGAN:
 
-DENGAN:
-
-<img src="images/project1.jpg" alt="Project">
+<img
+src="images/about.jpg"
+alt="Akbar Nubijak"
+>
 
 -->
 
 <div class="project-placeholder">
-PROJECT 01
-</div>
 
-<div class="project-overlay">
-
-<h3>Event Poster</h3>
-
-<p>
-Graphic Design / Event Visual
-</p>
+ABOUT IMAGE
 
 </div>
 
-</div>
+<div class="image-caption">
 
-
-
-<!-- PROJECT 2 -->
-
-<div class="project reveal"
-data-category="design"
-onclick="openProject(this)">
-
-<div class="project-placeholder">
-PROJECT 02
-</div>
-
-<div class="project-overlay">
-
-<h3>Social Media Design</h3>
-
-<p>
-Instagram / Content Design
-</p>
+AKBAR NUBIJAK / 2026
 
 </div>
-
-</div>
-
-
-
-<!-- PROJECT 3 -->
-
-<div class="project reveal"
-data-category="photo"
-onclick="openProject(this)">
-
-<div class="project-placeholder">
-PROJECT 03
-</div>
-
-<div class="project-overlay">
-
-<h3>School Event</h3>
-
-<p>
-Photography / Documentation
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- PROJECT 4 -->
-
-<div class="project reveal"
-data-category="video"
-onclick="openProject(this)">
-
-<div class="project-placeholder">
-PROJECT 04
-</div>
-
-<div class="project-overlay">
-
-<h3>Short Movie</h3>
-
-<p>
-Videography / Creative Project
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- PROJECT 5 -->
-
-<div class="project reveal"
-data-category="design"
-onclick="openProject(this)">
-
-<div class="project-placeholder">
-PROJECT 05
-</div>
-
-<div class="project-overlay">
-
-<h3>Packaging Design</h3>
-
-<p>
-Packaging / Branding
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- PROJECT 6 -->
-
-<div class="project reveal"
-data-category="photo"
-onclick="openProject(this)">
-
-<div class="project-placeholder">
-PROJECT 06
-</div>
-
-<div class="project-overlay">
-
-<h3>Portrait</h3>
-
-<p>
-Photography / Portrait
-</p>
-
-</div>
-
-</div>
-
-
 
 </div>
 
@@ -1544,262 +2108,102 @@ Photography / Portrait
 
 
 <!-- ======================================================
-     EXPERIENCE
+SERVICES
 ====================================================== -->
 
-<section id="experience">
+<section class="services">
 
 <div class="container">
 
-<div class="reveal">
 
-<div class="section-label">
-05 / Experience
-</div>
+<div class="services-header reveal">
 
-<h2 class="section-title">
-Experience.
+<h2 class="services-title">
+
+WHAT<br>
+
+I DO.
+
 </h2>
 
-<p class="section-desc">
-Pengalaman yang saya dapatkan melalui
-project sekolah, organisasi, dan kegiatan
-kreatif.
+<p class="services-description">
+
+Creative skills developed through
+school projects, organizations,
+competitions and personal work.
+
 </p>
 
 </div>
 
 
-<div class="timeline">
+<div class="service-list">
 
 
-<div class="timeline-item reveal">
-
-<div class="timeline-date">
-2025 — 2026
-</div>
-
-<div class="timeline-content">
-
-<h3>Creative Team — School Project</h3>
-
-<p>
-Terlibat dalam pembuatan desain,
-dokumentasi event sekolah, social media
-content, photography, videography,
-dan berbagai kebutuhan visual.
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="timeline-item reveal">
-
-<div class="timeline-date">
-2025 — 2026
-</div>
-
-<div class="timeline-content">
-
-<h3>OSIS / PDD</h3>
-
-<p>
-Berperan dalam publikasi dan dokumentasi
-kegiatan organisasi, membuat desain,
-mengelola visual media sosial,
-serta mendokumentasikan berbagai kegiatan.
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="timeline-item reveal">
-
-<div class="timeline-date">
-2026 — Present
-</div>
-
-<div class="timeline-content">
-
-<h3>DKV Production — Graphic Design Leader</h3>
-
-<p>
-Memimpin divisi desain grafis dan membantu
-anggota mempelajari desain, tools,
-layout, branding, mockup, packaging,
-serta desain siap produksi.
-</p>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     ACHIEVEMENT
-====================================================== -->
-
-<section>
-
-<div class="container">
-
-<div class="reveal">
-
-<div class="section-label">
-06 / Achievement
-</div>
-
-<h2 class="section-title">
-Some achievements.
-</h2>
-
-</div>
-
-
-<div class="achievement-grid">
-
-
-<div class="achievement reveal">
-
-<div class="achievement-number">
-01
-</div>
-
-<h3>Juara 2 — Poster Digital</h3>
-
-<p>
-YAMA X YATSA FEST
-</p>
-
-</div>
-
-
-
-<div class="achievement reveal">
-
-<div class="achievement-number">
-02
-</div>
-
-<h3>Juara 2 — Short Movie</h3>
-
-<p>
-DPUPR tingkat Provinsi Banten
-</p>
-
-</div>
-
-
-
-<div class="achievement reveal">
-
-<div class="achievement-number">
-03
-</div>
-
-<h3>LKS Design Graphic</h3>
-
-<p>
-Sertifikat Partisipasi Lomba
-LKS Design Graphic 2026
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     SERVICES
-====================================================== -->
-
-<section>
-
-<div class="container">
-
-<div class="reveal">
-
-<div class="section-label">
-07 / Capabilities
-</div>
-
-<h2 class="section-title">
-Creative services.
-</h2>
-
-</div>
-
-
-<div class="services-grid">
-
-
-<div class="service reveal">
+<div class="service-row reveal">
 
 <div class="service-number">
 01
 </div>
 
-<h3>Graphic Design</h3>
+<div class="service-name">
+Graphic Design
+</div>
 
-<p>
-Poster, banner, social media,
-event visual, branding dan lainnya.
-</p>
+<div class="service-arrow">
+↗
+</div>
 
 </div>
 
 
-
-<div class="service reveal">
+<div class="service-row reveal">
 
 <div class="service-number">
 02
 </div>
 
-<h3>Photography</h3>
+<div class="service-name">
+Photography
+</div>
 
-<p>
-Event documentation,
-portrait dan product photography.
-</p>
+<div class="service-arrow">
+↗
+</div>
 
 </div>
 
 
-
-<div class="service reveal">
+<div class="service-row reveal">
 
 <div class="service-number">
 03
 </div>
 
-<h3>Content Creation</h3>
+<div class="service-name">
+Videography
+</div>
 
-<p>
-Social media content,
-creative video dan visual campaign.
-</p>
+<div class="service-arrow">
+↗
+</div>
+
+</div>
+
+
+<div class="service-row reveal">
+
+<div class="service-number">
+04
+</div>
+
+<div class="service-name">
+Content Creation
+</div>
+
+<div class="service-arrow">
+↗
+</div>
 
 </div>
 
@@ -1813,131 +2217,743 @@ creative video dan visual campaign.
 
 
 <!-- ======================================================
-     ORGANIZATION
+WORK
 ====================================================== -->
 
-<section>
+<section class="work" id="work">
 
 <div class="container">
 
-<div class="reveal">
 
-<div class="section-label">
-08 / Organization
+<div class="work-header reveal">
+
+<div>
+
+<div class="label">
+02 / Selected Work
 </div>
-
-<h2 class="section-title">
-Beyond design.
-</h2>
-
-<p class="section-desc">
-Selain mengembangkan kemampuan desain,
-saya juga aktif dalam organisasi dan
-project kreatif bersama tim.
-</p>
-
-</div>
-
-
-<div class="timeline">
-
-
-<div class="timeline-item reveal">
-
-<div class="timeline-date">
-2025 — 2026
-</div>
-
-<div class="timeline-content">
-
-<h3>OSIS — PDD / Media</h3>
-
-<p>
-Publikasi, dokumentasi, desain,
-social media content dan creative media
-untuk berbagai kegiatan sekolah.
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="timeline-item reveal">
-
-<div class="timeline-date">
-2026 — Present
-</div>
-
-<div class="timeline-content">
-
-<h3>DKV Production</h3>
-
-<p>
-Graphic Design, Photography,
-Digital Printing, Broadcast,
-dan Video Editing.
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     CONTACT
-====================================================== -->
-
-<section id="contact" class="contact">
-
-<div class="container reveal">
-
-<div class="section-label">
-09 / Contact
-</div>
-
-<h2 class="contact-title">
-Let's create<br>
-something.
-</h2>
-
-<p class="section-desc">
-Punya project, collaboration,
-atau sekadar ingin ngobrol tentang
-creative work?
-</p>
 
 <br>
 
-<!-- GANTI EMAIL -->
+<h2 class="work-title">
+
+SELECTED<br>
+
+WORK.
+
+</h2>
+
+</div>
+
+
+<div class="work-count">
+
+06 PROJECTS / 2026
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 01 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<!--
+
+GANTI DENGAN:
+
+<img
+src="images/project1.jpg"
+alt="Event Poster"
+>
+
+-->
+
+<div class="project-placeholder">
+
+01
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+01 / 06
+
+</div>
+
+<h3 class="project-name">
+
+Event<br>
+
+Poster
+
+</h3>
+
+<div class="project-category">
+
+Graphic Design / Event
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 02 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<div class="project-placeholder">
+
+02
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+02 / 06
+
+</div>
+
+<h3 class="project-name">
+
+Social<br>
+
+Media
+
+</h3>
+
+<div class="project-category">
+
+Content Design / Social Media
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 03 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<div class="project-placeholder">
+
+03
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+03 / 06
+
+</div>
+
+<h3 class="project-name">
+
+School<br>
+
+Event
+
+</h3>
+
+<div class="project-category">
+
+Photography / Documentation
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 04 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<div class="project-placeholder">
+
+04
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+04 / 06
+
+</div>
+
+<h3 class="project-name">
+
+Short<br>
+
+Movie
+
+</h3>
+
+<div class="project-category">
+
+Videography / Film
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 05 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<div class="project-placeholder">
+
+05
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+05 / 06
+
+</div>
+
+<h3 class="project-name">
+
+Packaging<br>
+
+Design
+
+</h3>
+
+<div class="project-category">
+
+Branding / Packaging
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 06 -->
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+<div class="project-placeholder">
+
+06
+
+</div>
+
+</div>
+
+
+<div class="project-info">
+
+<div class="project-number">
+
+06 / 06
+
+</div>
+
+<h3 class="project-name">
+
+Creative<br>
+
+Content
+
+</h3>
+
+<div class="project-category">
+
+Content Creation / Visual
+
+</div>
+
+<a href="#" class="project-view">
+
+VIEW PROJECT →
+
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+ACHIEVEMENTS
+====================================================== -->
+
+<section class="achievements">
+
+<div class="container">
+
+
+<div class="achievement-header reveal">
+
+
+<div>
+
+<div class="label">
+
+03 / Achievement
+
+</div>
+
+<br>
+
+<h2 class="achievement-title">
+
+AWARDS<br>
+
+& MORE.
+
+</h2>
+
+</div>
+
+
+<p class="achievement-intro">
+
+A few milestones from creative
+competitions and projects.
+
+</p>
+
+</div>
+
+
+
+<div class="award reveal">
+
+<div class="award-number">
+01
+</div>
+
+<div class="award-name">
+
+Juara 2 — Poster Digital
+
+</div>
+
+<div class="award-place">
+
+YAMA X YATSA FEST
+
+</div>
+
+</div>
+
+
+
+<div class="award reveal">
+
+<div class="award-number">
+02
+</div>
+
+<div class="award-name">
+
+Juara 2 — Short Movie
+
+</div>
+
+<div class="award-place">
+
+DPUPR — Provinsi Banten
+
+</div>
+
+</div>
+
+
+
+<div class="award reveal">
+
+<div class="award-number">
+03
+</div>
+
+<div class="award-name">
+
+LKS Design Graphic
+
+</div>
+
+<div class="award-place">
+
+2026 — Participant
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+EXPERIENCE
+====================================================== -->
+
+<section class="experience" id="experience">
+
+<div class="container">
+
+<div class="experience-grid">
+
+
+<div class="reveal">
+
+<div class="label">
+
+04 / Experience
+
+</div>
+
+<br>
+
+<h2 class="experience-title">
+
+BEYOND<br>
+
+THE<br>
+
+DESIGN.
+
+</h2>
+
+</div>
+
+
+<div class="timeline reveal">
+
+
+<div class="timeline-item">
+
+<div class="timeline-year">
+
+2025 — 2026
+
+</div>
+
+<div class="timeline-content">
+
+<h3>
+
+OSIS — PDD / Media
+
+</h3>
+
+<p>
+
+Terlibat dalam publikasi,
+dokumentasi, desain visual,
+social media content dan
+kegiatan kreatif sekolah.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="timeline-item">
+
+<div class="timeline-year">
+
+2025 — 2026
+
+</div>
+
+<div class="timeline-content">
+
+<h3>
+
+Creative Team
+
+</h3>
+
+<p>
+
+Mengerjakan berbagai project
+desain, fotografi, videografi,
+event documentation dan
+creative content.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="timeline-item">
+
+<div class="timeline-year">
+
+2026 — NOW
+
+</div>
+
+<div class="timeline-content">
+
+<h3>
+
+DKV Production
+
+</h3>
+
+<p>
+
+Graphic Design Leader dalam
+DKV Production. Membantu
+mengembangkan kemampuan
+anggota dalam desain,
+branding dan produksi.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+TOOLS
+====================================================== -->
+
+<section class="tools">
+
+<div class="container">
+
+<div class="tools-title reveal">
+
+TOOLS / SOFTWARE
+
+</div>
+
+
+<div class="tools-grid reveal">
+
+
+<div class="tool">
+Adobe Illustrator
+</div>
+
+<div class="tool">
+Adobe Photoshop
+</div>
+
+<div class="tool">
+Adobe Premiere Pro
+</div>
+
+<div class="tool">
+After Effects
+</div>
+
+<div class="tool">
+Figma
+</div>
+
+<div class="tool">
+Canva
+</div>
+
+<div class="tool">
+CapCut
+</div>
+
+<div class="tool">
+Lightroom
+</div>
+
+<div class="tool">
+Procreate
+</div>
+
+<div class="tool">
+Ibis Paint
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+CONTACT
+====================================================== -->
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<div class="contact-content reveal">
+
+
+<div class="contact-label label">
+
+05 / Let's Talk
+
+</div>
+
+
+<h2 class="contact-title">
+
+LET'S<br>
+
+MAKE <span>GOOD</span><br>
+
+THINGS.
+
+</h2>
+
+
+<div class="contact-bottom">
+
 
 <a
 href="mailto:emailkamu@gmail.com"
-class="contact-email">
+class="contact-email"
+>
 
 emailkamu@gmail.com
 
 </a>
 
-<div class="hero-buttons"
-style="justify-content:center;">
 
-<a href="#" class="btn btn-outline">
+<div class="contact-socials">
+
+<a href="#">
 Instagram ↗
 </a>
 
-<a href="#" class="btn btn-outline">
+<a href="#">
 Behance ↗
 </a>
+
+<a href="#">
+LinkedIn ↗
+</a>
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -1948,7 +2964,7 @@ Behance ↗
 
 
 <!-- ======================================================
-     FOOTER
+FOOTER
 ====================================================== -->
 
 <footer>
@@ -1957,25 +2973,20 @@ Behance ↗
 
 <div class="footer-inner">
 
-<div>
+
+<div class="footer-copy">
+
 © 2026 Akbar Nubijak
-</div>
-
-<div class="socials">
-
-<a href="#">
-Instagram
-</a>
-
-<a href="#">
-Behance
-</a>
-
-<a href="#">
-LinkedIn
-</a>
 
 </div>
+
+
+<a href="#home" class="footer-back">
+
+Back to top ↑
+
+</a>
+
 
 </div>
 
@@ -1986,53 +2997,61 @@ LinkedIn
 
 
 <!-- ======================================================
-     LIGHTBOX
-====================================================== -->
-
-<div class="lightbox" id="lightbox">
-
-<div
-class="close-lightbox"
-onclick="closeProject()">
-
-×
-
-</div>
-
-<div class="lightbox-content"
-id="lightboxContent">
-
-</div>
-
-</div>
-
-
-
-<!-- ======================================================
-     JAVASCRIPT
+JAVASCRIPT
 ====================================================== -->
 
 <script>
 
+
 /* =========================================================
-   MOBILE MENU
+LOADER
 ========================================================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+window.addEventListener("load",()=>{
 
-menuBtn.addEventListener("click", () => {
+    setTimeout(()=>{
 
-    navLinks.classList.toggle("active");
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+    },900);
 
 });
 
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+/* =========================================================
+CUSTOM CURSOR
+========================================================= */
 
-    link.addEventListener("click", () => {
+const cursor =
+document.getElementById("cursor");
 
-        navLinks.classList.remove("active");
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left =
+    e.clientX + "px";
+
+    cursor.style.top =
+    e.clientY + "px";
+
+});
+
+
+document
+.querySelectorAll("a,.project,.service-row,.tool")
+.forEach(el=>{
+
+    el.addEventListener("mouseenter",()=>{
+
+        cursor.classList.add("active");
+
+    });
+
+    el.addEventListener("mouseleave",()=>{
+
+        cursor.classList.remove("active");
 
     });
 
@@ -2040,217 +3059,144 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 
 
 /* =========================================================
-   FILTER PORTFOLIO
+NAVBAR
 ========================================================= */
 
-const filterButtons =
-document.querySelectorAll(".filter-btn");
-
-const projects =
-document.querySelectorAll(".project");
+const navbar =
+document.getElementById("navbar");
 
 
-filterButtons.forEach(button => {
+window.addEventListener("scroll",()=>{
 
-    button.addEventListener("click", () => {
+    if(window.scrollY > 80){
 
-        filterButtons.forEach(btn =>
-            btn.classList.remove("active")
-        );
+        navbar.classList.add("scrolled");
 
-        button.classList.add("active");
+    }else{
 
-        const filter =
-        button.getAttribute("data-filter");
+        navbar.classList.remove("scrolled");
 
-
-        projects.forEach(project => {
-
-            const category =
-            project.getAttribute("data-category");
-
-
-            if (
-                filter === "all" ||
-                category === filter
-            ) {
-
-                project.style.display = "block";
-
-            } else {
-
-                project.style.display = "none";
-
-            }
-
-        });
-
-    });
+    }
 
 });
 
 
 /* =========================================================
-   SCROLL REVEAL
+REVEAL
 ========================================================= */
 
-const observer =
+const revealObserver =
 new IntersectionObserver(
-(entries) => {
 
-    entries.forEach(entry => {
+(entries)=>{
 
-        if (entry.isIntersecting) {
+    entries.forEach(entry=>{
 
-            entry.target.classList.add("show");
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+            revealObserver
+            .unobserve(entry.target);
 
         }
 
     });
 
 },
+
 {
-    threshold: 0.12
-});
+    threshold:.12
+}
 
 
-document.querySelectorAll(".reveal")
-.forEach(element => {
+);
 
-    observer.observe(element);
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+
+    revealObserver.observe(el);
 
 });
 
 
 /* =========================================================
-   LIGHTBOX
+PARALLAX
 ========================================================= */
 
-function openProject(project) {
-
-    const image =
-    project.querySelector("img");
-
-    const lightbox =
-    document.getElementById("lightbox");
-
-    const content =
-    document.getElementById("lightboxContent");
+const aboutImage =
+document.querySelector(".about-image img");
 
 
-    if (image) {
+window.addEventListener("scroll",()=>{
 
-        content.innerHTML =
-        `<img src="${image.src}" alt="">`;
+    if(!aboutImage) return;
 
-    } else {
+    const rect =
+    aboutImage.getBoundingClientRect();
 
-        content.innerHTML = `
-        <div style="
-            text-align:center;
-            padding:100px 20px;
-            color:#777;
-        ">
+    const windowHeight =
+    window.innerHeight;
 
-        <h2 style="
-            color:white;
-            font-family:'Space Grotesk';
-            font-size:40px;
-            margin-bottom:15px;
-        ">
+    if(
+        rect.top < windowHeight &&
+        rect.bottom > 0
+    ){
 
-        Project Preview
+        const progress =
+        (windowHeight - rect.top) /
+        (windowHeight + rect.height);
 
-        </h2>
+        const movement =
+        (progress - .5) * 100;
 
-        <p>
-        Tambahkan gambar project
-        untuk menampilkan preview.
-        </p>
-
-        </div>
-        `;
+        aboutImage.style.transform =
+        `translateY(${movement}px)`;
 
     }
 
-
-    lightbox.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-function closeProject() {
-
-    document
-    .getElementById("lightbox")
-    .classList.remove("active");
-
-    document.body.style.overflow = "";
-
-}
+});
 
 
 /* =========================================================
-   CLOSE LIGHTBOX CLICK OUTSIDE
+MAGNETIC BUTTON
 ========================================================= */
 
 document
-.getElementById("lightbox")
-.addEventListener("click", function(e) {
+.querySelectorAll(".project-view,.contact-email")
+.forEach(button=>{
 
-    if (e.target === this) {
+    button.addEventListener("mousemove",(e)=>{
 
-        closeProject();
+        const rect =
+        button.getBoundingClientRect();
 
-    }
+        const x =
+        e.clientX - rect.left - rect.width/2;
 
-});
+        const y =
+        e.clientY - rect.top - rect.height/2;
 
+        button.style.transform =
+        `translate(${x*.08}px,${y*.08}px)`;
 
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener("keydown", function(e) {
-
-    if (e.key === "Escape") {
-
-        closeProject();
-
-    }
-
-});
+    });
 
 
-/* =========================================================
-   NAVBAR BACKGROUND
-========================================================= */
+    button.addEventListener("mouseleave",()=>{
 
-window.addEventListener("scroll", () => {
+        button.style.transform =
+        "translate(0,0)";
 
-    const navbar =
-    document.querySelector(".navbar");
-
-
-    if (window.scrollY > 50) {
-
-        navbar.style.background =
-        "rgba(8,8,8,.92)";
-
-    } else {
-
-        navbar.style.background =
-        "rgba(8,8,8,.75)";
-
-    }
+    });
 
 });
+
 
 </script>
 
 
 </body>
 </html>
-```
