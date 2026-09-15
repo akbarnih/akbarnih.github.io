@@ -4,21 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Akbar Nubijak — Visual Designer</title>
-
-<meta name="description"
-content="Akbar Nubijak — Graphic Designer, Photographer, Videographer & Visual Creative">
+<title>Akbar Nubijak — Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================================
+/* =========================
 RESET
-========================================================= */
+========================= */
 
 *{
     margin:0;
@@ -31,23 +28,14 @@ html{
 }
 
 body{
-    background:#080808;
-    color:#f5f5f5;
+    background:#f5f5f3;
+    color:#111;
     font-family:"DM Sans",sans-serif;
-    overflow-x:hidden;
-}
-
-body.lock{
-    overflow:hidden;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
-}
-
-button{
-    font:inherit;
+    color:inherit;
 }
 
 img{
@@ -56,939 +44,481 @@ img{
 }
 
 ::selection{
-    background:#b9ff00;
-    color:#000;
+    background:#111;
+    color:#fff;
 }
 
+
+/* =========================
+VARIABLE
+========================= */
+
 :root{
-    --bg:#080808;
-    --card:#111;
-    --white:#f5f5f5;
-    --muted:#777;
-    --line:rgba(255,255,255,.12);
-    --acid:#b9ff00;
+    --black:#111;
+    --gray:#777;
+    --light:#f5f5f3;
+    --line:#d8d8d5;
+    --accent:#dfff00;
     --display:"Manrope",sans-serif;
 }
 
 
-/* =========================================================
-NOISE
-========================================================= */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:9998;
-    opacity:.035;
-
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-}
-
-
-/* =========================================================
-CUSTOM CURSOR
-========================================================= */
-
-.cursor{
-    position:fixed;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:#fff;
-    pointer-events:none;
-    z-index:10000;
-    transform:translate(-50%,-50%);
-    mix-blend-mode:difference;
-    transition:
-        width .3s ease,
-        height .3s ease,
-        background .3s ease;
-}
-
-.cursor.view{
-    width:90px;
-    height:90px;
-    background:var(--acid);
-    mix-blend-mode:normal;
-}
-
-.cursor.view::after{
-    content:"VIEW";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#000;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:2px;
-}
-
-
-/* =========================================================
-GLOBAL
-========================================================= */
+/* =========================
+LAYOUT
+========================= */
 
 .container{
-    width:min(1380px,90%);
+    width:min(1280px,90%);
     margin:auto;
 }
 
-.label{
-    color:#666;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:3px;
-}
 
-section{
-    position:relative;
-}
+/* =========================
+NAVBAR
+========================= */
 
-.display{
-    font-family:var(--display);
-}
-
-
-/* =========================================================
-LOADER
-========================================================= */
-
-.loader{
-    position:fixed;
-    inset:0;
-    background:#080808;
-    z-index:99999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:1s cubic-bezier(.76,0,.24,1);
-}
-
-.loader.hide{
-    transform:translateY(-100%);
-}
-
-.loader-inner{
-    width:min(500px,80%);
-}
-
-.loader-top{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:15px;
-    color:#666;
-    font-size:10px;
-    letter-spacing:2px;
-}
-
-.loader-name{
-    font-family:var(--display);
-    font-size:clamp(50px,10vw,120px);
-    font-weight:800;
-    letter-spacing:-7px;
-    line-height:.8;
-}
-
-.loader-name span{
-    color:var(--acid);
-}
-
-.loader-line{
-    margin-top:30px;
-    width:100%;
-    height:1px;
-    background:#222;
-    overflow:hidden;
-}
-
-.loader-progress{
-    width:0;
-    height:100%;
-    background:var(--acid);
-    animation:loading 1.8s ease forwards;
-}
-
-@keyframes loading{
-    to{
-        width:100%;
-    }
-}
-
-
-/* =========================================================
-NAV
-========================================================= */
-
-.nav{
+nav{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    z-index:9000;
-    padding:25px 0;
-    transition:.4s;
-}
+    z-index:1000;
 
-.nav.scrolled{
-    background:rgba(8,8,8,.75);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--line);
+    padding:25px 0;
+
+    mix-blend-mode:multiply;
 }
 
 .nav-inner{
-    width:min(1380px,90%);
+    width:min(1280px,90%);
     margin:auto;
+
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
     font-family:var(--display);
+    font-size:18px;
     font-weight:800;
-    font-size:19px;
     letter-spacing:-1px;
 }
 
 .logo span{
-    color:var(--acid);
+    color:#999;
 }
 
 .nav-links{
     display:flex;
-    gap:35px;
+    gap:30px;
 }
 
 .nav-links a{
     font-size:11px;
     text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#888;
-    position:relative;
-}
-
-.nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-6px;
-    width:0;
-    height:1px;
-    background:var(--acid);
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:#fff;
-}
-
-.nav-links a:hover::after{
-    width:100%;
-}
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#777;
-    font-size:10px;
-    text-transform:uppercase;
     letter-spacing:1px;
 }
 
-.status{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--acid);
-    box-shadow:0 0 15px var(--acid);
+.nav-links a:hover{
+    opacity:.5;
+}
+
+.nav-available{
+    font-size:10px;
+    color:#777;
 }
 
 
-/* =========================================================
+/* =========================
 HERO
-========================================================= */
+========================= */
 
 .hero{
     min-height:100vh;
+
     display:flex;
-    align-items:center;
-    overflow:hidden;
-}
+    align-items:flex-end;
 
-.hero-grid{
-    position:absolute;
-    inset:0;
-    background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-    background-size:100px 100px;
-    mask-image:linear-gradient(to bottom,#000,transparent);
-}
-
-.hero-glow{
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:var(--acid);
-    filter:blur(180px);
-    opacity:.08;
-    right:-150px;
-    top:10%;
+    padding:150px 0 60px;
 }
 
 .hero-content{
-    position:relative;
-    z-index:2;
     width:100%;
-    padding-top:100px;
 }
 
-.hero-top{
+.hero-small{
     display:flex;
     justify-content:space-between;
-    margin-bottom:50px;
-}
 
-.hero-location{
-    color:#666;
-    font-size:11px;
+    margin-bottom:35px;
+
+    font-size:10px;
+    color:#777;
+
+    text-transform:uppercase;
+    letter-spacing:2px;
 }
 
 .hero-title{
     font-family:var(--display);
-    font-size:clamp(75px,14vw,205px);
-    line-height:.75;
-    letter-spacing:-12px;
+
+    font-size:clamp(75px,14vw,185px);
+
+    line-height:.78;
+
+    letter-spacing:-10px;
+
     font-weight:800;
+
     text-transform:uppercase;
 }
 
-.hero-title .line{
-    display:block;
-}
-
-.hero-title .outline{
+.hero-title span{
     color:transparent;
-    -webkit-text-stroke:1px #777;
-}
-
-.hero-title .accent{
-    color:var(--acid);
+    -webkit-text-stroke:1.5px #111;
 }
 
 .hero-bottom{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    margin-top:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    margin-top:70px;
 }
 
 .hero-description{
-    max-width:450px;
-    color:#888;
+    max-width:430px;
+
+    color:#666;
+
     font-size:15px;
-    line-height:1.8;
-}
-
-.hero-meta{
-    display:flex;
-    justify-content:flex-end;
-    align-items:end;
-    gap:60px;
-}
-
-.meta-block{
-    text-align:right;
-}
-
-.meta-block small{
-    display:block;
-    color:#555;
-    font-size:9px;
-    letter-spacing:2px;
-    margin-bottom:8px;
-}
-
-.meta-block strong{
-    font-size:12px;
-    font-weight:500;
-}
-
-.scroll-indicator{
-    position:absolute;
-    bottom:35px;
-    left:50%;
-    transform:translateX(-50%);
-    color:#555;
-    font-size:9px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
-
-.scroll-indicator span{
-    display:block;
-    text-align:center;
-    margin-top:10px;
-    animation:bounce 1.5s infinite;
-}
-
-@keyframes bounce{
-    50%{
-        transform:translateY(7px);
-    }
-}
-
-
-/* =========================================================
-MARQUEE
-========================================================= */
-
-.marquee{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:25px 0;
-    overflow:hidden;
-    white-space:nowrap;
-}
-
-.marquee-track{
-    display:inline-flex;
-    animation:marquee 25s linear infinite;
-}
-
-.marquee-item{
-    font-family:var(--display);
-    font-size:25px;
-    font-weight:700;
-    margin-right:60px;
-    color:#444;
-}
-
-.marquee-item span{
-    color:var(--acid);
-    margin-left:60px;
-}
-
-@keyframes marquee{
-    to{
-        transform:translateX(-50%);
-    }
-}
-
-
-/* =========================================================
-ABOUT
-========================================================= */
-
-.about{
-    padding:190px 0;
-}
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1.6fr;
-    gap:120px;
-}
-
-.about-heading{
-    font-family:var(--display);
-    font-size:clamp(50px,7vw,100px);
-    line-height:.85;
-    letter-spacing:-6px;
-}
-
-.about-heading span{
-    color:#555;
-}
-
-.about-copy{
-    padding-top:50px;
-}
-
-.about-copy p{
-    color:#999;
-    font-size:20px;
-    line-height:1.75;
-    margin-bottom:30px;
-    max-width:720px;
-}
-
-.about-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    margin-top:70px;
-    border-top:1px solid var(--line);
-}
-
-.stat{
-    padding:20px 20px 20px 0;
-    border-right:1px solid var(--line);
-}
-
-.stat:last-child{
-    border-right:0;
-    padding-left:20px;
-}
-
-.stat small{
-    display:block;
-    color:#555;
-    font-size:9px;
-    letter-spacing:2px;
-    margin-bottom:10px;
-}
-
-.stat strong{
-    font-size:13px;
-    font-weight:500;
-}
-
-
-/* =========================================================
-PROFILE IMAGE
-========================================================= */
-
-.profile{
-    margin-top:120px;
-    position:relative;
-}
-
-.profile-frame{
-    height:75vh;
-    overflow:hidden;
-    position:relative;
-    background:#111;
-}
-
-.profile-frame img{
-    height:120%;
-    object-fit:cover;
-    filter:grayscale(100%);
-    transform:translateY(-10%);
-    transition:1.2s;
-}
-
-.profile-frame:hover img{
-    filter:grayscale(0);
-    transform:translateY(-12%) scale(1.03);
-}
-
-.profile-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.6),
-        transparent 50%
-    );
-}
-
-.profile-caption{
-    position:absolute;
-    left:30px;
-    bottom:25px;
-    font-size:10px;
-    letter-spacing:2px;
-}
-
-.profile-number{
-    position:absolute;
-    right:30px;
-    top:25px;
-    font-family:var(--display);
-    font-size:12px;
-    color:#777;
-}
-
-
-/* =========================================================
-SERVICES
-========================================================= */
-
-.services{
-    padding:150px 0;
-}
-
-.services-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin-bottom:80px;
-}
-
-.big-title{
-    font-family:var(--display);
-    font-size:clamp(70px,11vw,160px);
-    line-height:.75;
-    letter-spacing:-10px;
-}
-
-.services-intro{
-    max-width:300px;
-    color:#777;
-    font-size:13px;
     line-height:1.7;
 }
 
-.service{
-    display:grid;
-    grid-template-columns:90px 1fr 80px;
-    align-items:center;
+.hero-scroll{
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+
+/* =========================
+INTRO
+========================= */
+
+.intro{
     border-top:1px solid var(--line);
-    padding:38px 0;
-    transition:.5s;
+
+    padding:140px 0;
 }
 
-.service:last-child{
-    border-bottom:1px solid var(--line);
+.intro-grid{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:100px;
 }
 
-.service:hover{
-    padding-left:25px;
-    padding-right:25px;
-    background:#101010;
-}
-
-.service-number{
-    color:#555;
+.section-number{
     font-size:10px;
-}
-
-.service-name{
-    font-family:var(--display);
-    font-size:clamp(30px,4vw,60px);
-    font-weight:600;
-    letter-spacing:-3px;
-}
-
-.service-arrow{
-    text-align:right;
-    color:#555;
-    font-size:25px;
-    transition:.4s;
-}
-
-.service:hover .service-arrow{
-    color:var(--acid);
-    transform:rotate(45deg);
-}
-
-
-/* =========================================================
-WORK
-========================================================= */
-
-.work{
-    padding:180px 0;
-}
-
-.work-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin-bottom:120px;
-}
-
-.work-counter{
-    color:#666;
-    font-size:10px;
+    color:#888;
     letter-spacing:2px;
 }
 
-.project{
-    margin-bottom:170px;
-    position:relative;
+.intro-title{
+    font-family:var(--display);
+
+    font-size:clamp(45px,6vw,85px);
+
+    line-height:.9;
+
+    letter-spacing:-5px;
 }
 
-.project:last-child{
-    margin-bottom:0;
+.intro-title span{
+    color:#aaa;
 }
 
-.project-visual{
-    width:78%;
-    height:78vh;
-    position:relative;
+.intro-text{
+    max-width:700px;
+}
+
+.intro-text p{
+    font-size:21px;
+    line-height:1.7;
+
+    margin-bottom:30px;
+}
+
+.intro-meta{
+    display:flex;
+    gap:60px;
+
+    margin-top:60px;
+
+    padding-top:20px;
+
+    border-top:1px solid var(--line);
+}
+
+.meta small{
+    display:block;
+
+    color:#888;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+}
+
+.meta strong{
+    font-size:12px;
+}
+
+
+/* =========================
+PHOTO
+========================= */
+
+.profile{
+    margin-top:80px;
+}
+
+.profile-image{
+    height:75vh;
+
     overflow:hidden;
-    background:#111;
+
+    background:#ddd;
 }
 
-.project:nth-child(even) .project-visual{
-    margin-left:auto;
+.profile-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:grayscale(100%);
+
+    transition:.7s;
+}
+
+.profile-image:hover img{
+    filter:grayscale(0);
+    transform:scale(1.03);
+}
+
+
+/* =========================
+WORK
+========================= */
+
+.work{
+    padding:150px 0;
+}
+
+.work-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    margin-bottom:90px;
+}
+
+.work-title{
+    font-family:var(--display);
+
+    font-size:clamp(65px,10vw,140px);
+
+    line-height:.75;
+
+    letter-spacing:-8px;
+}
+
+.work-count{
+    font-size:10px;
+    color:#888;
+}
+
+
+/* =========================
+PROJECT
+========================= */
+
+.project{
+    margin-bottom:130px;
 }
 
 .project-image{
     width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:grayscale(100%);
-    transition:1.2s cubic-bezier(.16,1,.3,1);
+    height:75vh;
+
+    overflow:hidden;
+
+    background:#ddd;
 }
 
-.project:hover .project-image{
-    filter:grayscale(0);
-    transform:scale(1.06);
-}
-
-.project-placeholder{
+.project-image img{
     width:100%;
     height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            #292929,
-            #111 55%,
-            #080808
-        );
-    font-family:var(--display);
-    font-size:clamp(80px,15vw,220px);
-    font-weight:800;
-    color:#252525;
+
+    object-fit:cover;
+
+    filter:grayscale(100%);
+
+    transition:.8s;
 }
 
-.project-number{
-    position:absolute;
-    top:25px;
-    left:25px;
-    z-index:2;
-    font-size:10px;
-    letter-spacing:2px;
+.project:hover .project-image img{
+    filter:grayscale(0);
+    transform:scale(1.025);
 }
 
 .project-info{
-    position:absolute;
-    width:38%;
-    right:0;
-    bottom:50px;
-    background:#0b0b0b;
-    padding:45px;
-    z-index:5;
-    border:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    padding-top:20px;
+
+    border-top:1px solid #111;
+
+    margin-top:15px;
 }
 
-.project:nth-child(even) .project-info{
-    right:auto;
-    left:0;
+.project-left{
+    display:flex;
+    gap:30px;
 }
 
-.project-title{
+.project-number{
+    color:#888;
+    font-size:10px;
+}
+
+.project-name{
     font-family:var(--display);
-    font-size:clamp(40px,5vw,75px);
-    line-height:.85;
-    letter-spacing:-5px;
-    margin:25px 0;
+
+    font-size:clamp(28px,4vw,50px);
+
+    font-weight:600;
+
+    letter-spacing:-2px;
 }
 
 .project-category{
     color:#777;
+
     font-size:10px;
-    letter-spacing:2px;
+
     text-transform:uppercase;
-}
 
-.project-link{
-    display:inline-flex;
-    align-items:center;
-    gap:15px;
-    margin-top:40px;
-    font-size:10px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    border-bottom:1px solid #555;
-    padding-bottom:10px;
-}
+    letter-spacing:1px;
 
-.project-link span{
-    transition:.3s;
-}
-
-.project-link:hover span{
-    color:var(--acid);
-    transform:translateX(8px);
+    padding-top:8px;
 }
 
 
-/* =========================================================
-CASE STUDY MODAL
-========================================================= */
+/* =========================
+AWARDS
+========================= */
 
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:9500;
-    background:rgba(5,5,5,.96);
-    backdrop-filter:blur(25px);
-    display:none;
-    overflow-y:auto;
-}
-
-.modal.open{
-    display:block;
-}
-
-.modal-inner{
-    width:min(1100px,90%);
-    margin:100px auto;
-}
-
-.modal-close{
-    position:fixed;
-    top:30px;
-    right:40px;
-    width:50px;
-    height:50px;
-    border:1px solid #444;
+.awards{
     background:#111;
     color:#fff;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:20px;
-    z-index:10;
+
+    padding:140px 0;
 }
 
-.modal-number{
-    color:var(--acid);
-    font-size:10px;
-    letter-spacing:3px;
-}
-
-.modal-title{
-    font-family:var(--display);
-    font-size:clamp(60px,10vw,130px);
-    line-height:.8;
-    letter-spacing:-8px;
-    margin:25px 0 50px;
-}
-
-.modal-description{
-    color:#999;
-    max-width:650px;
-    line-height:1.8;
-    font-size:16px;
-    margin-bottom:60px;
-}
-
-.modal-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.modal-card{
-    border:1px solid var(--line);
-    padding:25px;
-}
-
-.modal-card small{
-    color:#555;
-    display:block;
-    font-size:9px;
-    letter-spacing:2px;
-    margin-bottom:10px;
-}
-
-.modal-card strong{
-    font-weight:500;
-    font-size:13px;
-}
-
-
-/* =========================================================
-ACHIEVEMENTS
-========================================================= */
-
-.achievements{
-    background:#f1f1ee;
-    color:#0a0a0a;
-    padding:160px 0;
-}
-
-.achievement-head{
+.awards-header{
     display:flex;
     justify-content:space-between;
-    align-items:end;
+    align-items:flex-end;
+
     margin-bottom:80px;
 }
 
-.achievement-title{
+.awards-title{
     font-family:var(--display);
-    font-size:clamp(70px,11vw,150px);
-    line-height:.75;
-    letter-spacing:-9px;
+
+    font-size:clamp(60px,9vw,120px);
+
+    line-height:.8;
+
+    letter-spacing:-7px;
 }
 
-.achievement-intro{
-    color:#666;
-    max-width:300px;
-    font-size:13px;
+.awards-description{
+    color:#888;
+    max-width:280px;
+
+    font-size:12px;
     line-height:1.7;
 }
 
 .award{
     display:grid;
-    grid-template-columns:90px 1fr 220px;
+    grid-template-columns:80px 1fr 200px;
+
     align-items:center;
-    border-top:1px solid rgba(0,0,0,.15);
-    padding:35px 0;
-    transition:.4s;
+
+    padding:30px 0;
+
+    border-top:1px solid #333;
 }
 
 .award:last-child{
-    border-bottom:1px solid rgba(0,0,0,.15);
-}
-
-.award:hover{
-    padding-left:20px;
-    padding-right:20px;
+    border-bottom:1px solid #333;
 }
 
 .award-number{
-    color:#888;
+    color:#666;
     font-size:10px;
 }
 
 .award-name{
     font-family:var(--display);
-    font-size:clamp(20px,3vw,38px);
-    font-weight:600;
-    letter-spacing:-1px;
+
+    font-size:clamp(20px,3vw,35px);
 }
 
 .award-place{
-    text-align:right;
-    color:#666;
+    color:#777;
+
     font-size:10px;
-    letter-spacing:1px;
+
+    text-align:right;
+
+    text-transform:uppercase;
 }
 
 
-/* =========================================================
+/* =========================
 EXPERIENCE
-========================================================= */
+========================= */
 
 .experience{
-    padding:180px 0;
+    padding:150px 0;
 }
 
 .experience-grid{
     display:grid;
-    grid-template-columns:1fr 1.6fr;
-    gap:120px;
+
+    grid-template-columns:1fr 2fr;
+
+    gap:100px;
 }
 
 .experience-title{
     font-family:var(--display);
-    font-size:clamp(55px,8vw,110px);
-    line-height:.8;
-    letter-spacing:-7px;
+
+    font-size:clamp(50px,7vw,100px);
+
+    line-height:.85;
+
+    letter-spacing:-6px;
 }
 
 .timeline{
@@ -997,106 +527,125 @@ EXPERIENCE
 
 .timeline-item{
     display:grid;
+
     grid-template-columns:120px 1fr;
-    gap:40px;
-    padding:40px 0;
+
+    gap:30px;
+
+    padding:35px 0;
+
     border-bottom:1px solid var(--line);
 }
 
 .timeline-year{
-    color:#555;
+    color:#888;
     font-size:10px;
 }
 
 .timeline-content h3{
     font-family:var(--display);
-    font-size:27px;
-    margin-bottom:12px;
+
+    font-size:25px;
+
+    margin-bottom:10px;
 }
 
 .timeline-content p{
-    max-width:600px;
     color:#777;
+
     font-size:13px;
-    line-height:1.8;
+
+    line-height:1.7;
 }
 
 
-/* =========================================================
+/* =========================
 TOOLS
-========================================================= */
+========================= */
 
 .tools{
-    padding:100px 0 180px;
+    border-top:1px solid var(--line);
+
+    padding:80px 0;
 }
 
-.tools-grid{
-    margin-top:50px;
+.tools-title{
+    font-size:10px;
+
+    color:#888;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    margin-bottom:30px;
+}
+
+.tools-list{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
 }
 
 .tool{
-    padding:15px 22px;
-    border:1px solid var(--line);
+    border:1px solid #ccc;
+
+    padding:12px 18px;
+
     border-radius:100px;
-    color:#888;
+
     font-size:11px;
-    transition:.4s;
+
+    transition:.3s;
 }
 
 .tool:hover{
-    background:var(--acid);
-    color:#000;
-    border-color:var(--acid);
-    transform:translateY(-5px);
+    background:#111;
+    color:#fff;
+    border-color:#111;
 }
 
 
-/* =========================================================
+/* =========================
 CONTACT
-========================================================= */
+========================= */
 
 .contact{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    border-top:1px solid var(--line);
-}
-
-.contact-content{
-    width:100%;
-    padding:160px 0;
+    padding:180px 0 120px;
 }
 
 .contact-title{
     font-family:var(--display);
-    font-size:clamp(70px,13vw,190px);
-    line-height:.72;
-    letter-spacing:-12px;
-    margin:40px 0 100px;
+
+    font-size:clamp(70px,12vw,170px);
+
+    line-height:.75;
+
+    letter-spacing:-10px;
 }
 
 .contact-title span{
-    color:var(--acid);
+    color:#aaa;
 }
 
 .contact-bottom{
     display:flex;
     justify-content:space-between;
-    align-items:end;
+    align-items:flex-end;
+
+    margin-top:80px;
+
+    padding-top:20px;
+
+    border-top:1px solid var(--line);
 }
 
 .email{
-    font-family:var(--display);
-    font-size:clamp(20px,3vw,38px);
-    border-bottom:1px solid #555;
-    padding-bottom:10px;
-}
+    font-size:20px;
 
-.email:hover{
-    border-color:var(--acid);
+    border-bottom:1px solid #111;
+
+    padding-bottom:5px;
 }
 
 .socials{
@@ -1105,132 +654,104 @@ CONTACT
 }
 
 .socials a{
-    color:#777;
     font-size:10px;
+
     text-transform:uppercase;
-    letter-spacing:2px;
+
+    letter-spacing:1px;
 }
 
 .socials a:hover{
-    color:var(--acid);
+    opacity:.5;
 }
 
 
-/* =========================================================
+/* =========================
 FOOTER
-========================================================= */
+========================= */
 
 footer{
+    padding:25px 0;
+
     border-top:1px solid var(--line);
-    padding:30px 0;
 }
 
 .footer-inner{
     display:flex;
     justify-content:space-between;
-    color:#555;
+
     font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
 
-.back-top:hover{
-    color:var(--acid);
+    color:#888;
 }
 
 
-/* =========================================================
-REVEAL
-========================================================= */
+/* =========================
+RESPONSIVE
+========================= */
 
-.reveal{
-    opacity:0;
-    transform:translateY(60px);
-    transition:
-        opacity 1s ease,
-        transform 1s cubic-bezier(.16,1,.3,1);
-}
+@media(max-width:800px){
 
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-
-/* =========================================================
-MOBILE
-========================================================= */
-
-.mobile-menu{
-    display:none;
-}
-
-@media(max-width:900px){
-
-    .nav-links{
+    .nav-links,
+    .nav-available{
         display:none;
-    }
-
-    .nav-right{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-        border:0;
-        background:none;
-        color:#fff;
-        font-size:20px;
-        cursor:pointer;
     }
 
     .hero-title{
-        letter-spacing:-7px;
+        letter-spacing:-6px;
     }
 
     .hero-bottom{
-        grid-template-columns:1fr;
-    }
-
-    .hero-meta{
-        justify-content:flex-start;
-    }
-
-    .about-grid,
-    .experience-grid{
-        grid-template-columns:1fr;
-        gap:50px;
-    }
-
-    .about-copy{
-        padding-top:0;
-    }
-
-    .services-head,
-    .work-head,
-    .achievement-head{
         flex-direction:column;
         align-items:flex-start;
+
         gap:30px;
     }
 
-    .project-visual{
-        width:100%;
-        height:65vh;
+    .intro-grid,
+    .experience-grid{
+        grid-template-columns:1fr;
+
+        gap:50px;
+    }
+
+    .intro-text{
+        max-width:100%;
+    }
+
+    .intro-text p{
+        font-size:18px;
+    }
+
+    .intro-meta{
+        gap:30px;
+        flex-wrap:wrap;
+    }
+
+    .profile-image,
+    .project-image{
+        height:60vh;
+    }
+
+    .work-header,
+    .awards-header{
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:25px;
     }
 
     .project-info{
-        width:75%;
-        bottom:20px;
+        flex-direction:column;
+        gap:20px;
     }
 
-    .project:nth-child(even) .project-info{
-        left:auto;
-        right:0;
+    .project-left{
+        gap:15px;
     }
 
     .award{
-        grid-template-columns:60px 1fr;
+        grid-template-columns:50px 1fr;
         gap:15px;
     }
 
@@ -1242,162 +763,82 @@ MOBILE
 }
 
 
-@media(max-width:600px){
-
-    .cursor{
-        display:none;
-    }
+@media(max-width:500px){
 
     .container{
         width:88%;
     }
 
-    .nav{
-        padding:20px 0;
-    }
-
     .hero{
-        min-height:90vh;
+        padding-top:120px;
     }
 
     .hero-title{
-        font-size:19vw;
-        letter-spacing:-6px;
+        font-size:20vw;
+        letter-spacing:-5px;
     }
 
-    .hero-top{
-        margin-bottom:35px;
+    .hero-small{
+        font-size:8px;
     }
 
-    .hero-description{
-        font-size:14px;
-    }
-
-    .hero-meta{
-        gap:25px;
-        justify-content:space-between;
-    }
-
-    .meta-block{
-        text-align:left;
-    }
-
-    .about,
-    .services,
+    .intro,
     .work,
     .experience{
-        padding:110px 0;
+        padding:100px 0;
     }
 
-    .about-heading{
-        font-size:58px;
+    .intro-title{
+        font-size:55px;
     }
 
-    .about-copy p{
-        font-size:17px;
-    }
-
-    .about-stats{
-        grid-template-columns:1fr;
-    }
-
-    .stat,
-    .stat:last-child{
-        border-right:0;
-        border-bottom:1px solid var(--line);
-        padding:20px 0;
-    }
-
-    .profile{
-        margin-top:70px;
-    }
-
-    .profile-frame{
-        height:60vh;
-    }
-
-    .big-title{
+    .work-title{
         font-size:75px;
-        letter-spacing:-6px;
-    }
-
-    .service{
-        grid-template-columns:40px 1fr 30px;
-        padding:25px 0;
-    }
-
-    .service-name{
-        font-size:26px;
-    }
-
-    .work-head{
-        margin-bottom:70px;
     }
 
     .project{
-        margin-bottom:100px;
+        margin-bottom:80px;
     }
 
-    .project-visual{
-        height:58vh;
+    .project-image{
+        height:50vh;
     }
 
-    .project-info{
-        width:90%;
-        padding:25px;
+    .project-name{
+        font-size:30px;
     }
 
-    .project-title{
-        font-size:46px;
+    .awards{
+        padding:100px 0;
     }
 
-    .modal-inner{
-        margin:90px auto;
-    }
-
-    .modal-title{
-        font-size:65px;
-    }
-
-    .modal-grid{
-        grid-template-columns:1fr;
-    }
-
-    .achievement-title{
-        font-size:75px;
+    .awards-title{
+        font-size:70px;
     }
 
     .experience-title{
-        font-size:75px;
+        font-size:70px;
     }
 
-    .timeline-item{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
-
-    .contact-content{
-        padding:110px 0;
+    .contact{
+        padding:100px 0;
     }
 
     .contact-title{
         font-size:20vw;
-        letter-spacing:-7px;
+        letter-spacing:-6px;
     }
 
     .contact-bottom{
         flex-direction:column;
         align-items:flex-start;
-        gap:40px;
-    }
 
-    .socials{
-        flex-wrap:wrap;
+        gap:40px;
     }
 
     .footer-inner{
         flex-direction:column;
-        gap:20px;
+        gap:15px;
     }
 
 }
@@ -1409,44 +850,11 @@ MOBILE
 <body>
 
 
-<!-- ======================================================
-LOADER
-====================================================== -->
+<!-- =========================
+NAVBAR
+========================= -->
 
-<div class="loader" id="loader">
-
-    <div class="loader-inner">
-
-        <div class="loader-top">
-            <span>AKBAR NUBIJAK</span>
-            <span>2026</span>
-        </div>
-
-        <div class="loader-name">
-            AKBAR<span>.</span>
-        </div>
-
-        <div class="loader-line">
-            <div class="loader-progress"></div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
-CURSOR
-====================================================== -->
-
-<div class="cursor" id="cursor"></div>
-
-
-<!-- ======================================================
-NAVIGATION
-====================================================== -->
-
-<nav class="nav" id="nav">
+<nav>
 
     <div class="nav-inner">
 
@@ -1456,69 +864,61 @@ NAVIGATION
 
         <div class="nav-links">
 
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#work">
+                Work
+            </a>
+
+            <a href="#experience">
+                Experience
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
 
         </div>
 
-        <div class="nav-right">
-
-            <div class="status"></div>
+        <div class="nav-available">
             Available for creative work
-
         </div>
-
-        <button class="mobile-menu" onclick="scrollToContact()">
-            ↗
-        </button>
 
     </div>
 
 </nav>
 
 
-<!-- ======================================================
+<!-- =========================
 HERO
-====================================================== -->
+========================= -->
 
 <section class="hero" id="home">
 
-    <div class="hero-grid"></div>
-
-    <div class="hero-glow"></div>
-
     <div class="container">
 
-        <div class="hero-content reveal">
+        <div class="hero-content">
 
-            <div class="hero-top">
+            <div class="hero-small">
 
-                <div class="label">
+                <span>
                     Portfolio / 2026
-                </div>
+                </span>
 
-                <div class="hero-location">
+                <span>
                     Tangerang, Indonesia
-                </div>
+                </span>
 
             </div>
 
 
             <h1 class="hero-title">
 
-                <span class="line">
-                    AKBAR
-                </span>
+                AKBAR<br>
 
-                <span class="line outline">
-                    NUBIJAK
-                </span>
-
-                <span class="line accent">
-                    CREATIVE.
-                </span>
+                <span>NUBIJAK</span>
 
             </h1>
 
@@ -1527,168 +927,82 @@ HERO
 
                 <p class="hero-description">
 
-                    Graphic designer and visual creative
-                    focused on graphic design, photography,
-                    videography, branding and digital content.
+                    Graphic designer & visual creative
+                    interested in photography,
+                    videography, branding and
+                    digital content.
 
                 </p>
 
-
-                <div class="hero-meta">
-
-                    <div class="meta-block">
-
-                        <small>BASED</small>
-
-                        <strong>
-                            Tangerang
-                        </strong>
-
-                    </div>
-
-
-                    <div class="meta-block">
-
-                        <small>FIELD</small>
-
-                        <strong>
-                            Visual Design
-                        </strong>
-
-                    </div>
-
-
-                    <div class="meta-block">
-
-                        <small>STATUS</small>
-
-                        <strong>
-                            Student / DKV
-                        </strong>
-
-                    </div>
-
+                <div class="hero-scroll">
+                    Scroll to explore ↓
                 </div>
 
             </div>
 
         </div>
-
-    </div>
-
-
-    <div class="scroll-indicator">
-
-        SCROLL
-
-        <span>↓</span>
 
     </div>
 
 </section>
 
 
-<!-- ======================================================
-MARQUEE
-====================================================== -->
-
-<div class="marquee">
-
-    <div class="marquee-track">
-
-        <div class="marquee-item">
-            GRAPHIC DESIGN <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            PHOTOGRAPHY <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            VIDEOGRAPHY <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            BRANDING <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            CONTENT CREATION <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            GRAPHIC DESIGN <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            PHOTOGRAPHY <span>✦</span>
-        </div>
-
-        <div class="marquee-item">
-            VIDEOGRAPHY <span>✦</span>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
+<!-- =========================
 ABOUT
-====================================================== -->
+========================= -->
 
-<section class="about" id="about">
+<section class="intro" id="about">
 
     <div class="container">
 
-        <div class="about-grid">
+        <div class="intro-grid">
 
-            <div class="reveal">
+            <div>
 
-                <div class="label">
-                    01 / About
+                <div class="section-number">
+                    01 / ABOUT
                 </div>
 
                 <br><br>
 
-                <h2 class="about-heading">
+                <h2 class="intro-title">
 
-                    DESIGN<br>
-                    WITH<br>
-                    <span>INTENTION.</span>
+                    TURNING<br>
+                    IDEAS INTO<br>
+                    <span>VISUALS.</span>
 
                 </h2>
 
             </div>
 
 
-            <div class="about-copy reveal">
+            <div class="intro-text">
 
                 <p>
 
                     Saya adalah siswa SMK PGRI 1 Tangerang
                     jurusan Desain Komunikasi Visual yang
-                    memiliki ketertarikan besar pada dunia
-                    visual dan creative media.
+                    memiliki ketertarikan pada desain grafis,
+                    fotografi, videografi dan media sosial.
 
                 </p>
 
                 <p>
 
-                    Saya senang mengubah ide menjadi visual
-                    yang menarik, komunikatif dan memiliki
-                    karakter — mulai dari desain event,
-                    social media, photography hingga
-                    creative project.
+                    Saya menikmati proses mengubah sebuah
+                    ide menjadi visual yang menarik,
+                    komunikatif dan memiliki karakter.
 
                 </p>
 
 
-                <div class="about-stats">
+                <div class="intro-meta">
 
-                    <div class="stat">
+                    <div class="meta">
 
-                        <small>EDUCATION</small>
+                        <small>
+                            EDUCATION
+                        </small>
 
                         <strong>
                             SMK PGRI 1 Tangerang
@@ -1697,23 +1011,27 @@ ABOUT
                     </div>
 
 
-                    <div class="stat">
+                    <div class="meta">
 
-                        <small>MAJOR</small>
+                        <small>
+                            MAJOR
+                        </small>
 
                         <strong>
-                            Desain Komunikasi Visual
+                            DKV
                         </strong>
 
                     </div>
 
 
-                    <div class="stat">
+                    <div class="meta">
 
-                        <small>BASED</small>
+                        <small>
+                            BASED
+                        </small>
 
                         <strong>
-                            Tangerang, Indonesia
+                            Tangerang
                         </strong>
 
                     </div>
@@ -1725,36 +1043,19 @@ ABOUT
         </div>
 
 
-        <!-- FOTO PROFIL -->
+        <!-- FOTO -->
 
-        <div class="profile reveal">
+        <div class="profile">
 
-            <div class="profile-frame">
+            <div class="profile-image">
 
-                <!--
-                GANTI BAGIAN INI DENGAN:
+                <!-- GANTI DENGAN FOTO KAMU -->
 
                 <img
                     src="images/about.jpg"
                     alt="Akbar Nubijak"
                 >
 
-                -->
-
-                <div class="project-placeholder">
-                    AKBAR
-                </div>
-
-                <div class="profile-overlay"></div>
-
-                <div class="profile-caption">
-                    AKBAR NUBIJAK / VISUAL CREATIVE
-                </div>
-
-                <div class="profile-number">
-                    01 — 05
-                </div>
-
             </div>
 
         </div>
@@ -1764,146 +1065,33 @@ ABOUT
 </section>
 
 
-<!-- ======================================================
-SERVICES
-====================================================== -->
-
-<section class="services">
-
-    <div class="container">
-
-        <div class="services-head reveal">
-
-            <div>
-
-                <div class="label">
-                    02 / Capabilities
-                </div>
-
-                <br><br>
-
-                <h2 class="big-title">
-                    WHAT<br>
-                    I DO.
-                </h2>
-
-            </div>
-
-
-            <p class="services-intro">
-
-                Creative skills developed through
-                school projects, organizations,
-                competitions and personal work.
-
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <div class="service reveal">
-
-                <div class="service-number">
-                    01
-                </div>
-
-                <div class="service-name">
-                    Graphic Design
-                </div>
-
-                <div class="service-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-
-            <div class="service reveal">
-
-                <div class="service-number">
-                    02
-                </div>
-
-                <div class="service-name">
-                    Photography
-                </div>
-
-                <div class="service-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-
-            <div class="service reveal">
-
-                <div class="service-number">
-                    03
-                </div>
-
-                <div class="service-name">
-                    Videography
-                </div>
-
-                <div class="service-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-
-            <div class="service reveal">
-
-                <div class="service-number">
-                    04
-                </div>
-
-                <div class="service-name">
-                    Content Creation
-                </div>
-
-                <div class="service-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
+<!-- =========================
 WORK
-====================================================== -->
+========================= -->
 
 <section class="work" id="work">
 
     <div class="container">
 
-        <div class="work-head reveal">
+        <div class="work-header">
 
             <div>
 
-                <div class="label">
-                    03 / Selected Work
+                <div class="section-number">
+                    02 / SELECTED WORK
                 </div>
 
                 <br><br>
 
-                <h2 class="big-title">
+                <h2 class="work-title">
                     SELECTED<br>
                     WORK.
                 </h2>
 
             </div>
 
-            <div class="work-counter">
-                06 PROJECTS / 2025—2026
+            <div class="work-count">
+                06 PROJECTS
             </div>
 
         </div>
@@ -1911,332 +1099,243 @@ WORK
 
         <!-- PROJECT 01 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="poster"
-            >
-
-                <div class="project-number">
-                    01 / 06
-                </div>
-
-                <!--
-                GANTI DENGAN:
+            <div class="project-image">
 
                 <img
-                    class="project-image"
                     src="images/project1.jpg"
                     alt="Event Poster"
                 >
 
-                -->
-
-                <div class="project-placeholder">
-                    01
-                </div>
-
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
+                <div class="project-left">
+
+                    <div class="project-number">
+                        01
+                    </div>
+
+                    <h3 class="project-name">
+                        Event Poster
+                    </h3>
+
+                </div>
+
+                <div class="project-category">
                     Graphic Design / Event
                 </div>
 
-                <h3 class="project-title">
-                    Event<br>
-                    Poster
-                </h3>
-
-                <div class="project-category">
-                    Poster • Visual System • Event
-                </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="poster"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
-
             </div>
 
-        </article>
+        </div>
 
 
         <!-- PROJECT 02 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="social"
-            >
+            <div class="project-image">
 
-                <div class="project-number">
-                    02 / 06
-                </div>
-
-                <div class="project-placeholder">
-                    02
-                </div>
+                <img
+                    src="images/project2.jpg"
+                    alt="Social Media"
+                >
 
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
-                    Social Media / Content
-                </div>
+                <div class="project-left">
 
-                <h3 class="project-title">
-                    Social<br>
-                    Media
-                </h3>
+                    <div class="project-number">
+                        02
+                    </div>
+
+                    <h3 class="project-name">
+                        Social Media
+                    </h3>
+
+                </div>
 
                 <div class="project-category">
-                    Feed • Content • Campaign
+                    Content / Social Media
                 </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="social"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
 
             </div>
 
-        </article>
+        </div>
 
 
         <!-- PROJECT 03 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="photo"
-            >
+            <div class="project-image">
 
-                <div class="project-number">
-                    03 / 06
-                </div>
-
-                <div class="project-placeholder">
-                    03
-                </div>
+                <img
+                    src="images/project3.jpg"
+                    alt="School Event"
+                >
 
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
-                    Photography / Event
-                </div>
+                <div class="project-left">
 
-                <h3 class="project-title">
-                    School<br>
-                    Event
-                </h3>
+                    <div class="project-number">
+                        03
+                    </div>
+
+                    <h3 class="project-name">
+                        School Event
+                    </h3>
+
+                </div>
 
                 <div class="project-category">
-                    Photography • Documentation
+                    Photography / Documentation
                 </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="photo"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
 
             </div>
 
-        </article>
+        </div>
 
 
         <!-- PROJECT 04 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="movie"
-            >
+            <div class="project-image">
 
-                <div class="project-number">
-                    04 / 06
-                </div>
-
-                <div class="project-placeholder">
-                    04
-                </div>
+                <img
+                    src="images/project4.jpg"
+                    alt="Short Movie"
+                >
 
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
+                <div class="project-left">
+
+                    <div class="project-number">
+                        04
+                    </div>
+
+                    <h3 class="project-name">
+                        Short Movie
+                    </h3>
+
+                </div>
+
+                <div class="project-category">
                     Videography / Film
                 </div>
 
-                <h3 class="project-title">
-                    Short<br>
-                    Movie
-                </h3>
-
-                <div class="project-category">
-                    Film • Storytelling • Editing
-                </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="movie"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
-
             </div>
 
-        </article>
+        </div>
 
 
         <!-- PROJECT 05 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="packaging"
-            >
+            <div class="project-image">
 
-                <div class="project-number">
-                    05 / 06
-                </div>
-
-                <div class="project-placeholder">
-                    05
-                </div>
+                <img
+                    src="images/project5.jpg"
+                    alt="Packaging Design"
+                >
 
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
+                <div class="project-left">
+
+                    <div class="project-number">
+                        05
+                    </div>
+
+                    <h3 class="project-name">
+                        Packaging Design
+                    </h3>
+
+                </div>
+
+                <div class="project-category">
                     Branding / Packaging
                 </div>
 
-                <h3 class="project-title">
-                    Packaging<br>
-                    Design
-                </h3>
-
-                <div class="project-category">
-                    Branding • Packaging • Mockup
-                </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="packaging"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
-
             </div>
 
-        </article>
+        </div>
 
 
         <!-- PROJECT 06 -->
 
-        <article class="project reveal">
+        <div class="project">
 
-            <div
-                class="project-visual project-trigger"
-                data-project="content"
-            >
+            <div class="project-image">
 
-                <div class="project-number">
-                    06 / 06
-                </div>
-
-                <div class="project-placeholder">
-                    06
-                </div>
+                <img
+                    src="images/project6.jpg"
+                    alt="Creative Content"
+                >
 
             </div>
-
 
             <div class="project-info">
 
-                <div class="label">
-                    Creative / Visual
-                </div>
+                <div class="project-left">
 
-                <h3 class="project-title">
-                    Creative<br>
-                    Content
-                </h3>
+                    <div class="project-number">
+                        06
+                    </div>
+
+                    <h3 class="project-name">
+                        Creative Content
+                    </h3>
+
+                </div>
 
                 <div class="project-category">
-                    Content • Visual • Social
+                    Content Creation / Visual
                 </div>
-
-                <a
-                    href="#"
-                    class="project-link project-trigger"
-                    data-project="content"
-                >
-                    VIEW CASE STUDY
-                    <span>→</span>
-                </a>
 
             </div>
 
-        </article>
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- ======================================================
-ACHIEVEMENTS
-====================================================== -->
+<!-- =========================
+AWARDS
+========================= -->
 
-<section class="achievements">
+<section class="awards">
 
     <div class="container">
 
-        <div class="achievement-head reveal">
+        <div class="awards-header">
 
             <div>
 
-                <div class="label">
-                    04 / Recognition
+                <div class="section-number">
+                    03 / ACHIEVEMENTS
                 </div>
 
                 <br><br>
 
-                <h2 class="achievement-title">
+                <h2 class="awards-title">
                     AWARDS<br>
                     & MORE.
                 </h2>
@@ -2244,7 +1343,7 @@ ACHIEVEMENTS
             </div>
 
 
-            <p class="achievement-intro">
+            <p class="awards-description">
 
                 Selected achievements from
                 competitions and creative projects.
@@ -2254,7 +1353,7 @@ ACHIEVEMENTS
         </div>
 
 
-        <div class="award reveal">
+        <div class="award">
 
             <div class="award-number">
                 01
@@ -2271,7 +1370,7 @@ ACHIEVEMENTS
         </div>
 
 
-        <div class="award reveal">
+        <div class="award">
 
             <div class="award-number">
                 02
@@ -2282,13 +1381,13 @@ ACHIEVEMENTS
             </div>
 
             <div class="award-place">
-                DPUPR — PROVINSI BANTEN
+                DPUPR Provinsi Banten
             </div>
 
         </div>
 
 
-        <div class="award reveal">
+        <div class="award">
 
             <div class="award-number">
                 03
@@ -2299,7 +1398,7 @@ ACHIEVEMENTS
             </div>
 
             <div class="award-place">
-                2026 — PARTICIPANT
+                Participant / 2026
             </div>
 
         </div>
@@ -2309,9 +1408,9 @@ ACHIEVEMENTS
 </section>
 
 
-<!-- ======================================================
+<!-- =========================
 EXPERIENCE
-====================================================== -->
+========================= -->
 
 <section class="experience" id="experience">
 
@@ -2319,10 +1418,10 @@ EXPERIENCE
 
         <div class="experience-grid">
 
-            <div class="reveal">
+            <div>
 
-                <div class="label">
-                    05 / Experience
+                <div class="section-number">
+                    04 / EXPERIENCE
                 </div>
 
                 <br><br>
@@ -2338,8 +1437,7 @@ EXPERIENCE
             </div>
 
 
-            <div class="timeline reveal">
-
+            <div class="timeline">
 
                 <div class="timeline-item">
 
@@ -2354,12 +1452,9 @@ EXPERIENCE
                         </h3>
 
                         <p>
-
-                            Terlibat dalam publikasi,
-                            dokumentasi, desain visual,
-                            social media content dan
-                            kegiatan kreatif sekolah.
-
+                            Publikasi, dokumentasi,
+                            desain visual dan
+                            social media content.
                         </p>
 
                     </div>
@@ -2380,12 +1475,10 @@ EXPERIENCE
                         </h3>
 
                         <p>
-
-                            Mengerjakan berbagai project
-                            desain, fotografi, videografi,
-                            event documentation dan
+                            Desain, photography,
+                            videography, event
+                            documentation dan
                             creative content.
-
                         </p>
 
                     </div>
@@ -2406,19 +1499,13 @@ EXPERIENCE
                         </h3>
 
                         <p>
-
-                            Graphic Design Leader dalam
-                            DKV Production. Membantu
-                            mengembangkan kemampuan
-                            anggota dalam desain,
-                            branding dan produksi.
-
+                            Graphic Design Leader
+                            dalam DKV Production.
                         </p>
 
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -2429,30 +1516,30 @@ EXPERIENCE
 </section>
 
 
-<!-- ======================================================
+<!-- =========================
 TOOLS
-====================================================== -->
+========================= -->
 
 <section class="tools">
 
     <div class="container">
 
-        <div class="label reveal">
-            06 / Tools
+        <div class="tools-title">
+            Tools / Software
         </div>
 
-        <div class="tools-grid reveal">
+        <div class="tools-list">
 
             <div class="tool">
                 Adobe Illustrator
             </div>
 
             <div class="tool">
-                Adobe Photoshop
+                Photoshop
             </div>
 
             <div class="tool">
-                Adobe Premiere Pro
+                Premiere Pro
             </div>
 
             <div class="tool">
@@ -2479,10 +1566,6 @@ TOOLS
                 Procreate
             </div>
 
-            <div class="tool">
-                Ibis Paint
-            </div>
-
         </div>
 
     </div>
@@ -2490,59 +1573,52 @@ TOOLS
 </section>
 
 
-<!-- ======================================================
+<!-- =========================
 CONTACT
-====================================================== -->
+========================= -->
 
 <section class="contact" id="contact">
 
     <div class="container">
 
-        <div class="contact-content reveal">
+        <div class="section-number">
+            05 / CONTACT
+        </div>
 
-            <div class="label">
-                07 / Contact
-            </div>
+        <br><br>
+
+        <h2 class="contact-title">
+
+            LET'S<br>
+            MAKE <span>GOOD</span><br>
+            THINGS.
+
+        </h2>
 
 
-            <h2 class="contact-title">
+        <div class="contact-bottom">
 
-                LET'S<br>
-                MAKE <span>GOOD</span><br>
-                THINGS.
+            <a
+                href="mailto:emailkamu@gmail.com"
+                class="email"
+            >
+                emailkamu@gmail.com
+            </a>
 
-            </h2>
 
+            <div class="socials">
 
-            <div class="contact-bottom">
-
-                <!-- GANTI EMAIL -->
-
-                <a
-                    href="mailto:emailkamu@gmail.com"
-                    class="email"
-                >
-                    emailkamu@gmail.com
+                <a href="#">
+                    Instagram
                 </a>
 
+                <a href="#">
+                    Behance
+                </a>
 
-                <div class="socials">
-
-                    <!-- GANTI LINK -->
-
-                    <a href="#" target="_blank">
-                        Instagram ↗
-                    </a>
-
-                    <a href="#" target="_blank">
-                        Behance ↗
-                    </a>
-
-                    <a href="#" target="_blank">
-                        LinkedIn ↗
-                    </a>
-
-                </div>
+                <a href="#">
+                    LinkedIn
+                </a>
 
             </div>
 
@@ -2553,9 +1629,9 @@ CONTACT
 </section>
 
 
-<!-- ======================================================
+<!-- =========================
 FOOTER
-====================================================== -->
+========================= -->
 
 <footer>
 
@@ -2563,14 +1639,11 @@ FOOTER
 
         <div class="footer-inner">
 
-            <div>
+            <span>
                 © 2026 Akbar Nubijak
-            </div>
+            </span>
 
-            <a
-                href="#home"
-                class="back-top"
-            >
+            <a href="#home">
                 Back to top ↑
             </a>
 
@@ -2579,554 +1652,6 @@ FOOTER
     </div>
 
 </footer>
-
-
-<!-- ======================================================
-CASE STUDY MODAL
-====================================================== -->
-
-<div class="modal" id="modal">
-
-    <button
-        class="modal-close"
-        id="modalClose"
-    >
-        ×
-    </button>
-
-
-    <div class="modal-inner">
-
-        <div
-            class="modal-number"
-            id="modalNumber"
-        >
-            PROJECT
-        </div>
-
-
-        <h2
-            class="modal-title"
-            id="modalTitle"
-        >
-            Project
-        </h2>
-
-
-        <p
-            class="modal-description"
-            id="modalDescription"
-        >
-            Project description.
-        </p>
-
-
-        <div class="modal-grid">
-
-            <div class="modal-card">
-
-                <small>
-                    CATEGORY
-                </small>
-
-                <strong id="modalCategory">
-                    Graphic Design
-                </strong>
-
-            </div>
-
-
-            <div class="modal-card">
-
-                <small>
-                    YEAR
-                </small>
-
-                <strong id="modalYear">
-                    2026
-                </strong>
-
-            </div>
-
-
-            <div class="modal-card">
-
-                <small>
-                    ROLE
-                </small>
-
-                <strong id="modalRole">
-                    Designer
-                </strong>
-
-            </div>
-
-
-            <div class="modal-card">
-
-                <small>
-                    TOOLS
-                </small>
-
-                <strong id="modalTools">
-                    Illustrator / Photoshop
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-/* =========================================================
-LOADER
-========================================================= */
-
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-
-        document
-            .getElementById("loader")
-            .classList.add("hide");
-
-    }, 1800);
-
-});
-
-
-/* =========================================================
-NAVBAR
-========================================================= */
-
-const nav = document.getElementById("nav");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 60){
-        nav.classList.add("scrolled");
-    }else{
-        nav.classList.remove("scrolled");
-    }
-
-});
-
-
-/* =========================================================
-CUSTOM CURSOR
-========================================================= */
-
-const cursor =
-    document.getElementById("cursor");
-
-document.addEventListener("mousemove", e => {
-
-    cursor.style.left =
-        e.clientX + "px";
-
-    cursor.style.top =
-        e.clientY + "px";
-
-});
-
-
-document
-    .querySelectorAll(".project-trigger")
-    .forEach(el => {
-
-        el.addEventListener("mouseenter", () => {
-            cursor.classList.add("view");
-        });
-
-        el.addEventListener("mouseleave", () => {
-            cursor.classList.remove("view");
-        });
-
-    });
-
-
-/* =========================================================
-REVEAL ANIMATION
-========================================================= */
-
-const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if(entry.isIntersecting){
-
-                    entry.target
-                        .classList
-                        .add("show");
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold:.12
-        }
-
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(el => {
-
-        observer.observe(el);
-
-    });
-
-
-/* =========================================================
-PROJECT DATA
-========================================================= */
-
-const projects = {
-
-    poster: {
-
-        number:"01 / 06",
-
-        title:"EVENT<br>POSTER",
-
-        description:
-        "Project desain visual untuk kebutuhan event. Fokus pada pengembangan visual yang menarik, komunikatif dan tetap memiliki hierarchy informasi yang jelas.",
-
-        category:"Graphic Design / Event",
-
-        year:"2026",
-
-        role:"Graphic Designer",
-
-        tools:"Adobe Illustrator / Photoshop"
-
-    },
-
-
-    social: {
-
-        number:"02 / 06",
-
-        title:"SOCIAL<br>MEDIA",
-
-        description:
-        "Eksplorasi visual untuk kebutuhan social media, mulai dari feed, campaign visual, informasi kegiatan hingga content design.",
-
-        category:"Social Media / Content",
-
-        year:"2025—2026",
-
-        role:"Designer / Content Creator",
-
-        tools:"Illustrator / Photoshop / Canva"
-
-    },
-
-
-    photo: {
-
-        number:"03 / 06",
-
-        title:"SCHOOL<br>EVENT",
-
-        description:
-        "Dokumentasi fotografi berbagai kegiatan sekolah dengan fokus pada storytelling, momen dan visual yang dapat digunakan untuk kebutuhan publikasi.",
-
-        category:"Photography / Documentation",
-
-        year:"2025—2026",
-
-        role:"Photographer",
-
-        tools:"Camera / Lightroom"
-
-    },
-
-
-    movie: {
-
-        number:"04 / 06",
-
-        title:"SHORT<br>MOVIE",
-
-        description:
-        "Project video kreatif yang menggabungkan storytelling, cinematography, editing dan visual direction untuk menyampaikan sebuah cerita.",
-
-        category:"Videography / Film",
-
-        year:"2026",
-
-        role:"Creative Team",
-
-        tools:"Premiere Pro / After Effects"
-
-    },
-
-
-    packaging: {
-
-        number:"05 / 06",
-
-        title:"PACKAGING<br>DESIGN",
-
-        description:
-        "Eksplorasi desain kemasan dari konsep visual, layout, mockup hingga persiapan desain untuk kebutuhan produksi.",
-
-        category:"Branding / Packaging",
-
-        year:"2026",
-
-        role:"Graphic Designer",
-
-        tools:"Illustrator / Photoshop"
-
-    },
-
-
-    content: {
-
-        number:"06 / 06",
-
-        title:"CREATIVE<br>CONTENT",
-
-        description:
-        "Eksperimen berbagai format visual untuk menghasilkan content yang menarik, relevan dan sesuai dengan karakter platform digital.",
-
-        category:"Content Creation / Visual",
-
-        year:"2025—2026",
-
-        role:"Designer / Creator",
-
-        tools:"Canva / CapCut / Lightroom"
-
-    }
-
-};
-
-
-/* =========================================================
-MODAL
-========================================================= */
-
-const modal =
-    document.getElementById("modal");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-const modalNumber =
-    document.getElementById("modalNumber");
-
-const modalTitle =
-    document.getElementById("modalTitle");
-
-const modalDescription =
-    document.getElementById("modalDescription");
-
-const modalCategory =
-    document.getElementById("modalCategory");
-
-const modalYear =
-    document.getElementById("modalYear");
-
-const modalRole =
-    document.getElementById("modalRole");
-
-const modalTools =
-    document.getElementById("modalTools");
-
-
-document
-    .querySelectorAll(".project-trigger")
-    .forEach(button => {
-
-        button.addEventListener("click", e => {
-
-            e.preventDefault();
-
-            const id =
-                button.dataset.project;
-
-            const project =
-                projects[id];
-
-            if(!project) return;
-
-
-            modalNumber.innerHTML =
-                project.number;
-
-            modalTitle.innerHTML =
-                project.title;
-
-            modalDescription.innerHTML =
-                project.description;
-
-            modalCategory.innerHTML =
-                project.category;
-
-            modalYear.innerHTML =
-                project.year;
-
-            modalRole.innerHTML =
-                project.role;
-
-            modalTools.innerHTML =
-                project.tools;
-
-
-            modal.classList.add("open");
-
-            document.body.classList.add("lock");
-
-        });
-
-    });
-
-
-function closeModal(){
-
-    modal.classList.remove("open");
-
-    document.body.classList.remove("lock");
-
-}
-
-
-modalClose.addEventListener(
-    "click",
-    closeModal
-);
-
-
-modal.addEventListener("click", e => {
-
-    if(e.target === modal){
-
-        closeModal();
-
-    }
-
-});
-
-
-document.addEventListener("keydown", e => {
-
-    if(e.key === "Escape"){
-
-        closeModal();
-
-    }
-
-});
-
-
-/* =========================================================
-CONTACT
-========================================================= */
-
-function scrollToContact(){
-
-    document
-        .getElementById("contact")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-}
-
-
-/* =========================================================
-IMAGE PARALLAX
-========================================================= */
-
-window.addEventListener("scroll", () => {
-
-    const image =
-        document.querySelector(".profile-frame img");
-
-    if(!image) return;
-
-    const rect =
-        image.getBoundingClientRect();
-
-    if(
-        rect.top < window.innerHeight &&
-        rect.bottom > 0
-    ){
-
-        const progress =
-            (window.innerHeight - rect.top) /
-            (window.innerHeight + rect.height);
-
-        const move =
-            (progress - .5) * 70;
-
-        image.style.transform =
-            `translateY(${move}px)`;
-
-    }
-
-});
-
-
-/* =========================================================
-MAGNETIC EMAIL
-========================================================= */
-
-const email =
-    document.querySelector(".email");
-
-if(email){
-
-    email.addEventListener("mousemove", e => {
-
-        const rect =
-            email.getBoundingClientRect();
-
-        const x =
-            e.clientX -
-            rect.left -
-            rect.width / 2;
-
-        const y =
-            e.clientY -
-            rect.top -
-            rect.height / 2;
-
-        email.style.transform =
-            `translate(${x * .06}px,${y * .06}px)`;
-
-    });
-
-
-    email.addEventListener("mouseleave", () => {
-
-        email.style.transform =
-            "translate(0,0)";
-
-    });
-
-}
-
-</script>
 
 </body>
 </html>
