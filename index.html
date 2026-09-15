@@ -2,1565 +2,261 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Akbar Nubijak — DKV Portfolio</title>
-
-  <style>
-    /* =========================
-       RESET
-    ========================== */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg: #0b0b0b;
-      --card: #141414;
-      --card2: #191919;
-      --text: #f5f5f5;
-      --muted: #8d8d8d;
-      --line: #272727;
-      --accent: #8b7cff;
-      --accent2: #b5adff;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* =========================
-       CUSTOM SCROLLBAR
-    ========================== */
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0b0b0b;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 10px;
-    }
-
-    /* =========================
-       NAVBAR
-    ========================== */
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      background: rgba(11, 11, 11, 0.72);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 999;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 34px;
-    }
-
-    nav ul li a {
-      color: #aaa;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: white;
-    }
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      min-height: 100vh;
-      padding: 150px 7% 100px;
-
-      display: flex;
-      align-items: center;
-
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-
-      width: 550px;
-      height: 550px;
-
-      background: var(--accent);
-      opacity: 0.12;
-
-      filter: blur(130px);
-      border-radius: 50%;
-
-      top: 5%;
-      right: -10%;
-
-      pointer-events: none;
-    }
-
-    .hero-content {
-      max-width: 1000px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-small {
-      color: var(--accent2);
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 {
-      font-size: clamp(60px, 10vw, 140px);
-      line-height: 0.9;
-      letter-spacing: -7px;
-      margin-bottom: 35px;
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-    }
-
-    .hero-description {
-      max-width: 650px;
-      color: #999;
-      font-size: 18px;
-      margin-bottom: 35px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 14px 24px;
-
-      border-radius: 100px;
-
-      font-size: 14px;
-      font-weight: bold;
-
-      transition: 0.3s;
-    }
-
-    .button-primary {
-      background: white;
-      color: #111;
-    }
-
-    .button-primary:hover {
-      transform: translateY(-4px);
-      background: var(--accent);
-      color: white;
-    }
-
-    .button-outline {
-      border: 1px solid #333;
-      color: #ccc;
-    }
-
-    .button-outline:hover {
-      border-color: var(--accent);
-      color: white;
-    }
-
-    /* =========================
-       HERO STATS
-    ========================== */
-
-    .hero-stats {
-      display: flex;
-      gap: 55px;
-      margin-top: 75px;
-    }
-
-    .stat h3 {
-      font-size: 30px;
-      margin-bottom: 2px;
-    }
-
-    .stat p {
-      color: #777;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* =========================
-       SECTION
-    ========================== */
-
-    section {
-      padding: 120px 7%;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 30px;
-      margin-bottom: 55px;
-    }
-
-    .section-number {
-      color: var(--accent);
-      font-size: 13px;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .section-header h2 {
-      font-size: clamp(38px, 6vw, 70px);
-      line-height: 1;
-      letter-spacing: -3px;
-    }
-
-    .section-header p {
-      max-width: 350px;
-      color: #777;
-      font-size: 14px;
-    }
-
-    /* =========================
-       ABOUT
-    ========================== */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about-text {
-      color: #aaa;
-      font-size: 19px;
-      line-height: 1.9;
-    }
-
-    .about-text strong {
-      color: white;
-    }
-
-    .about-box {
-      border: 1px solid var(--line);
-      padding: 35px;
-      border-radius: 20px;
-      background: linear-gradient(
-        145deg,
-        #151515,
-        #0d0d0d
-      );
-    }
-
-    .about-box h3 {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    .about-list {
-      list-style: none;
-    }
-
-    .about-list li {
-      padding: 13px 0;
-      border-bottom: 1px solid #242424;
-      color: #999;
-    }
-
-    .about-list li:last-child {
-      border-bottom: none;
-    }
-
-    .about-list span {
-      color: white;
-      float: right;
-    }
-
-    /* =========================
-       SKILLS
-    ========================== */
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .skill-card {
-      min-height: 160px;
-      padding: 25px;
-
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-
-      transition: 0.35s;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-7px);
-      border-color: #444;
-    }
-
-    .skill-number {
-      color: var(--accent);
-      font-size: 13px;
-      margin-bottom: 35px;
-    }
-
-    .skill-card h3 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .skill-card p {
-      color: #777;
-      font-size: 13px;
-    }
-
-    /* =========================
-       PROJECT FILTER
-    ========================== */
-
-    .filters {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .filter-btn {
-      padding: 10px 18px;
-      border: 1px solid #2b2b2b;
-      background: transparent;
-      color: #888;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: white;
-      color: black;
-      border-color: white;
-    }
-
-    /* =========================
-       PROJECT GRID
-    ========================== */
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
-
-    .project {
-      position: relative;
-      overflow: hidden;
-      border-radius: 18px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      cursor: pointer;
-
-      min-height: 360px;
-
-      transition: 0.4s;
-    }
-
-    .project:nth-child(1),
-    .project:nth-child(4) {
-      grid-column: span 7;
-    }
-
-    .project:nth-child(2),
-    .project:nth-child(3),
-    .project:nth-child(5),
-    .project:nth-child(6) {
-      grid-column: span 5;
-    }
-
-    .project img {
-      width: 100%;
-      height: 100%;
-      min-height: 360px;
-      object-fit: cover;
-
-      transition: 0.6s;
-    }
-
-    .project:hover img {
-      transform: scale(1.06);
-    }
-
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-
-      padding: 30px;
-
-      background: linear-gradient(
-        transparent 25%,
-        rgba(0,0,0,0.85)
-      );
-
-      opacity: 0;
-      transition: 0.4s;
-    }
-
-    .project:hover .project-overlay {
-      opacity: 1;
-    }
-
-    .project-category {
-      color: var(--accent2);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 7px;
-    }
-
-    .project-overlay h3 {
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-
-    .project-overlay p {
-      color: #bbb;
-      font-size: 14px;
-    }
-
-    /* =========================
-       ACHIEVEMENT
-    ========================== */
-
-    .achievement-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .achievement {
-      display: grid;
-      grid-template-columns: 100px 1fr 180px;
-      gap: 30px;
-
-      padding: 28px 0;
-
-      border-bottom: 1px solid var(--line);
-
-      align-items: center;
-
-      transition: 0.3s;
-    }
-
-    .achievement:hover {
-      padding-left: 15px;
-    }
-
-    .achievement-year {
-      color: var(--accent);
-      font-size: 14px;
-    }
-
-    .achievement h3 {
-      font-size: 20px;
-    }
-
-    .achievement p {
-      color: #777;
-      font-size: 13px;
-    }
-
-    .achievement-place {
-      text-align: right;
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    /* =========================
-       CONTACT
-    ========================== */
-
-    .contact-section {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: 150px 7%;
-    }
-
-    .contact-section::before {
-      content: "";
-
-      position: absolute;
-
-      width: 450px;
-      height: 450px;
-
-      background: var(--accent);
-      opacity: 0.13;
-
-      filter: blur(120px);
-      border-radius: 50%;
-
-      left: 50%;
-      top: 50%;
-
-      transform: translate(-50%, -50%);
-    }
-
-    .contact-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .contact-content h2 {
-      font-size: clamp(50px, 9vw, 110px);
-      line-height: 0.95;
-      letter-spacing: -5px;
-      margin-bottom: 25px;
-    }
-
-    .contact-content h2 span {
-      color: var(--accent);
-    }
-
-    .contact-content p {
-      color: #888;
-      max-width: 500px;
-      margin: 0 auto 35px;
-    }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .socials a {
-      color: #888;
-      transition: 0.3s;
-    }
-
-    .socials a:hover {
-      color: white;
-    }
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 30px 7%;
-
-      display: flex;
-      justify-content: space-between;
-
-      color: #666;
-      font-size: 13px;
-    }
-
-    /* =========================
-       LIGHTBOX
-    ========================== */
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(15px);
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 30px;
-
-      z-index: 2000;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 85vh;
-
-      object-fit: contain;
-
-      border-radius: 10px;
-    }
-
-    .close-lightbox {
-      position: absolute;
-      top: 25px;
-      right: 35px;
-
-      font-size: 35px;
-      color: white;
-
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    /* =========================
-       ANIMATION
-    ========================== */
-
-    .fade-up {
-      animation: fadeUp 1s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 900px) {
-
-      nav {
-        padding: 18px 5%;
-      }
-
-      nav ul {
-        gap: 16px;
-      }
-
-      .hero {
-        padding: 140px 5% 80px;
-      }
-
-      .hero h1 {
-        letter-spacing: -4px;
-      }
-
-      section {
-        padding: 90px 5%;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      .project,
-      .project:nth-child(1),
-      .project:nth-child(2),
-      .project:nth-child(3),
-      .project:nth-child(4),
-      .project:nth-child(5),
-      .project:nth-child(6) {
-        grid-column: span 1;
-      }
-
-      .project-overlay {
-        opacity: 1;
-      }
-
-      .achievement {
-        grid-template-columns: 70px 1fr;
-      }
-
-      .achievement-place {
-        grid-column: 2;
-        text-align: left;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      nav ul li:nth-child(2) {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 58px;
-      }
-
-      .hero-description {
-        font-size: 16px;
-      }
-
-      .hero-stats {
-        gap: 25px;
-      }
-
-      .stat h3 {
-        font-size: 24px;
-      }
-
-      .section-header {
-        display: block;
-      }
-
-      .section-header p {
-        margin-top: 20px;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skill-card {
-        min-height: 130px;
-      }
-
-      .project {
-        min-height: 300px;
-      }
-
-      .project img {
-        min-height: 300px;
-      }
-
-      .contact-content h2 {
-        letter-spacing: -3px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Akbar Nubijak</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .profile {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 4px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,.1);
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        /* CONTENT */
+        section {
+            background: white;
+            padding: 35px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.05);
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .about p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* INFO */
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .box {
+            background: #f7f7f7;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .box span {
+            display: block;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .box strong {
+            font-size: 16px;
+        }
+
+        /* HOBBY */
+        .hobbies {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hobby {
+            background: #222;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            header {
+                padding-top: 50px;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <div class="container">
 
-  <!-- =========================
-       NAVBAR
-  ========================== -->
+        <!-- PROFIL -->
+        <header>
 
-  <nav>
+            <!-- Ganti foto.jpg dengan foto kamu -->
+            <img
+                src="foto.jpg"
+                alt="Foto Akbar"
+                class="profile"
+            >
 
-    <a href="#home" class="logo">
-      Akbar<span>.</span>
-    </a>
+            <h1>Akbar Nubijak</h1>
 
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#project">Works</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+            <p>
+                Siswa Desain Komunikasi Visual
+            </p>
 
-  </nav>
-
-
-  <!-- =========================
-       HERO
-  ========================== -->
-
-  <section class="hero" id="home">
-
-    <div class="hero-content fade-up">
-
-      <div class="hero-small">
-        DKV Student · Graphic Designer
-      </div>
-
-      <h1>
-        Akbar<br>
-        <span>Nubijak.</span>
-      </h1>
-
-      <p class="hero-description">
-        Saya seorang siswa Desain Komunikasi Visual yang
-        mengeksplorasi desain grafis, fotografi, videografi,
-        branding, dan creative content.
-      </p>
-
-      <div class="hero-buttons">
-
-        <a href="#project" class="button button-primary">
-          Explore My Works →
-        </a>
-
-        <a href="#about" class="button button-outline">
-          About Me
-        </a>
-
-      </div>
+        </header>
 
 
-      <div class="hero-stats">
+        <!-- TENTANG SAYA -->
+        <section class="about">
 
-        <div class="stat">
-          <h3>05+</h3>
-          <p>Creative Fields</p>
-        </div>
+            <h2>Tentang Saya</h2>
 
-        <div class="stat">
-          <h3>03+</h3>
-          <p>Achievements</p>
-        </div>
+            <p>
+                Halo! Saya Akbar Nubijak, seorang siswa yang
+                memiliki ketertarikan pada dunia kreatif dan visual.
+                Saya senang mempelajari hal-hal baru terutama dalam
+                bidang desain, fotografi, dan videografi.
+            </p>
 
-        <div class="stat">
-          <h3>2026</h3>
-          <p>DKV Journey</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
+        </section>
 
 
-  <!-- =========================
-       ABOUT
-  ========================== -->
+        <!-- DATA DIRI -->
+        <section>
 
-  <section id="about">
+            <h2>Profil</h2>
 
-    <div class="section-header">
+            <div class="info">
 
-      <div>
-        <div class="section-number">01 — ABOUT</div>
-        <h2>Behind<br>the Visual.</h2>
-      </div>
+                <div class="box">
+                    <span>Nama</span>
+                    <strong>Akbar Nubijak</strong>
+                </div>
 
-      <p>
-        Mengenal saya, proses kreatif, dan hal-hal
-        yang saya kerjakan di dunia visual.
-      </p>
+                <div class="box">
+                    <span>Sekolah</span>
+                    <strong>SMK PGRI 1 Tangerang</strong>
+                </div>
 
-    </div>
+                <div class="box">
+                    <span>Jurusan</span>
+                    <strong>Desain Komunikasi Visual</strong>
+                </div>
 
+                <div class="box">
+                    <span>Organisasi</span>
+                    <strong>OSIS & DKV Production</strong>
+                </div>
 
-    <div class="about-grid">
+            </div>
 
-      <div class="about-text">
-
-        <p>
-          Saya adalah <strong>siswa Desain Komunikasi Visual
-          di SMK PGRI 1 Tangerang</strong> yang memiliki
-          ketertarikan besar terhadap dunia visual.
-        </p>
-
-        <br>
-
-        <p>
-          Saya senang mengubah ide menjadi karya visual
-          melalui <strong>desain grafis, fotografi,
-          videografi, editing, branding, dan content creation.</strong>
-        </p>
-
-        <br>
-
-        <p>
-          Bagi saya, desain bukan hanya tentang membuat
-          sesuatu terlihat bagus, tetapi juga bagaimana
-          sebuah visual dapat menyampaikan pesan.
-        </p>
-
-      </div>
+        </section>
 
 
-      <div class="about-box">
+        <!-- HOBI -->
+        <section>
 
-        <h3>Quick Info</h3>
+            <h2>Hobi</h2>
 
-        <ul class="about-list">
+            <div class="hobbies">
 
-          <li>
-            Name
-            <span>Akbar Nubijak</span>
-          </li>
+                <div class="hobby">
+                    📷 Fotografi
+                </div>
 
-          <li>
-            Major
-            <span>Desain Komunikasi Visual</span>
-          </li>
+                <div class="hobby">
+                    🎨 Desain Grafis
+                </div>
 
-          <li>
-            School
-            <span>SMK PGRI 1 Tangerang</span>
-          </li>
+                <div class="hobby">
+                    🎥 Videografi
+                </div>
 
-          <li>
-            Focus
-            <span>Visual & Creative</span>
-          </li>
+                <div class="hobby">
+                    🎬 Editing
+                </div>
 
-          <li>
-            Based
-            <span>Tangerang, Indonesia</span>
-          </li>
+            </div>
 
-        </ul>
+        </section>
 
-      </div>
+
+        <!-- ORGANISASI -->
+        <section class="about">
+
+            <h2>Organisasi</h2>
+
+            <p>
+                Saya aktif dalam kegiatan OSIS sebagai bagian dari
+                bidang media/PDD dan juga terlibat dalam DKV Production,
+                khususnya pada divisi desain grafis.
+            </p>
+
+        </section>
+
+
+        <footer>
+            © 2026 Akbar Nubijak
+        </footer>
 
     </div>
-
-  </section>
-
-
-  <!-- =========================
-       SKILLS
-  ========================== -->
-
-  <section id="skills">
-
-    <div class="section-header">
-
-      <div>
-        <div class="section-number">02 — SKILLS</div>
-        <h2>What I<br>Do.</h2>
-      </div>
-
-      <p>
-        Beberapa bidang kreatif yang sedang saya
-        pelajari dan kembangkan.
-      </p>
-
-    </div>
-
-
-    <div class="skills-grid">
-
-      <div class="skill-card">
-        <div class="skill-number">01</div>
-        <h3>Graphic Design</h3>
-        <p>Poster, social media, event design, layout & visual communication.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">02</div>
-        <h3>Photography</h3>
-        <p>Event, school documentation, portrait & creative photography.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">03</div>
-        <h3>Videography</h3>
-        <p>Creative video, event documentation & short movie.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">04</div>
-        <h3>Video Editing</h3>
-        <p>Editing video, storytelling, transitions & visual effects.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">05</div>
-        <h3>Branding</h3>
-        <p>Logo, visual identity, color, typography & brand concept.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">06</div>
-        <h3>Social Media</h3>
-        <p>Instagram content, feed design & creative communication.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">07</div>
-        <h3>Packaging</h3>
-        <p>Packaging concept, mockup & production-ready design.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-number">08</div>
-        <h3>Content Creation</h3>
-        <p>Developing creative ideas into engaging visual content.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       PROJECTS
-  ========================== -->
-
-  <section id="project">
-
-    <div class="section-header">
-
-      <div>
-        <div class="section-number">03 — SELECTED WORKS</div>
-        <h2>My<br>Projects.</h2>
-      </div>
-
-      <p>
-        Kumpulan karya dan project kreatif
-        yang pernah saya kerjakan.
-      </p>
-
-    </div>
-
-
-    <!-- FILTER -->
-
-    <div class="filters">
-
-      <button class="filter-btn active" data-filter="all">
-        All
-      </button>
-
-      <button class="filter-btn" data-filter="design">
-        Design
-      </button>
-
-      <button class="filter-btn" data-filter="photo">
-        Photography
-      </button>
-
-      <button class="filter-btn" data-filter="video">
-        Video
-      </button>
-
-      <button class="filter-btn" data-filter="branding">
-        Branding
-      </button>
-
-    </div>
-
-
-    <!-- PROJECTS -->
-
-    <div class="projects">
-
-
-      <!-- PROJECT 1 -->
-
-      <div class="project" data-category="design">
-
-        <img
-          src="https://picsum.photos/1200/800?random=11"
-          alt="Graphic Design"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Graphic Design
-          </div>
-
-          <h3>Event Poster</h3>
-
-          <p>
-            Poster & visual event design
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- PROJECT 2 -->
-
-      <div class="project" data-category="photo">
-
-        <img
-          src="https://picsum.photos/900/900?random=12"
-          alt="Photography"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Photography
-          </div>
-
-          <h3>School Event</h3>
-
-          <p>
-            Event documentation
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- PROJECT 3 -->
-
-      <div class="project" data-category="video">
-
-        <img
-          src="https://picsum.photos/900/900?random=13"
-          alt="Short Movie"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Videography
-          </div>
-
-          <h3>Short Movie</h3>
-
-          <p>
-            Creative video project
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- PROJECT 4 -->
-
-      <div class="project" data-category="branding">
-
-        <img
-          src="https://picsum.photos/1200/800?random=14"
-          alt="Branding"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Branding
-          </div>
-
-          <h3>Visual Identity</h3>
-
-          <p>
-            Logo & brand identity
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- PROJECT 5 -->
-
-      <div class="project" data-category="design">
-
-        <img
-          src="https://picsum.photos/900/900?random=15"
-          alt="Social Media"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Social Media
-          </div>
-
-          <h3>Instagram Content</h3>
-
-          <p>
-            Feed & social media design
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- PROJECT 6 -->
-
-      <div class="project" data-category="design">
-
-        <img
-          src="https://picsum.photos/900/900?random=16"
-          alt="Packaging"
-        >
-
-        <div class="project-overlay">
-
-          <div class="project-category">
-            Packaging
-          </div>
-
-          <h3>Product Packaging</h3>
-
-          <p>
-            Packaging & mockup design
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       ACHIEVEMENTS
-  ========================== -->
-
-  <section>
-
-    <div class="section-header">
-
-      <div>
-        <div class="section-number">04 — ACHIEVEMENTS</div>
-        <h2>Selected<br>Achievements.</h2>
-      </div>
-
-      <p>
-        Beberapa pencapaian yang menjadi bagian
-        dari perjalanan kreatif saya.
-      </p>
-
-    </div>
-
-
-    <div class="achievement-list">
-
-
-      <div class="achievement">
-
-        <div class="achievement-year">
-          2026
-        </div>
-
-        <div>
-          <h3>Juara 2 — Lomba Poster Digital</h3>
-          <p>
-            YAMA X YATSA FEST
-          </p>
-        </div>
-
-        <div class="achievement-place">
-          Creative Design
-        </div>
-
-      </div>
-
-
-      <div class="achievement">
-
-        <div class="achievement-year">
-          2026
-        </div>
-
-        <div>
-          <h3>Juara 2 — Short Movie</h3>
-          <p>
-            Lomba tingkat Provinsi Banten
-          </p>
-        </div>
-
-        <div class="achievement-place">
-          Videography
-        </div>
-
-      </div>
-
-
-      <div class="achievement">
-
-        <div class="achievement-year">
-          2026
-        </div>
-
-        <div>
-          <h3>Peserta LKS Design Graphic</h3>
-          <p>
-            Sertifikat Partisipasi
-          </p>
-        </div>
-
-        <div class="achievement-place">
-          Graphic Design
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       CONTACT
-  ========================== -->
-
-  <section class="contact-section" id="contact">
-
-    <div class="contact-content">
-
-      <div class="section-number">
-        05 — CONTACT
-      </div>
-
-      <h2>
-        Let's create<br>
-        something <span>great.</span>
-      </h2>
-
-      <p>
-        Punya project, kolaborasi, atau sekadar ingin
-        melihat karya saya? Jangan ragu untuk menghubungi.
-      </p>
-
-      <a
-        href="mailto:emailkamu@gmail.com"
-        class="button button-primary"
-      >
-        Get In Touch →
-      </a>
-
-
-      <div class="socials">
-
-        <a href="#" target="_blank">
-          Instagram
-        </a>
-
-        <a href="#" target="_blank">
-          Behance
-        </a>
-
-        <a href="#" target="_blank">
-          LinkedIn
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div>
-      © 2026 Akbar Nubijak
-    </div>
-
-    <div>
-      DKV · Creative · Visual
-    </div>
-
-  </footer>
-
-
-  <!-- =========================
-       LIGHTBOX
-  ========================== -->
-
-  <div class="lightbox" id="lightbox">
-
-    <div class="close-lightbox" id="closeLightbox">
-      ×
-    </div>
-
-    <img id="lightboxImage" src="" alt="Project Preview">
-
-  </div>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
-
-  <script>
-
-    /* =========================
-       PROJECT FILTER
-    ========================== */
-
-    const filterButtons =
-      document.querySelectorAll(".filter-btn");
-
-    const projects =
-      document.querySelectorAll(".project");
-
-
-    filterButtons.forEach(button => {
-
-      button.addEventListener("click", () => {
-
-        filterButtons.forEach(btn =>
-          btn.classList.remove("active")
-        );
-
-        button.classList.add("active");
-
-        const filter =
-          button.getAttribute("data-filter");
-
-
-        projects.forEach(project => {
-
-          const category =
-            project.getAttribute("data-category");
-
-
-          if (
-            filter === "all" ||
-            category === filter
-          ) {
-
-            project.style.display = "block";
-
-          } else {
-
-            project.style.display = "none";
-
-          }
-
-        });
-
-      });
-
-    });
-
-
-    /* =========================
-       LIGHTBOX
-    ========================== */
-
-    const lightbox =
-      document.getElementById("lightbox");
-
-    const lightboxImage =
-      document.getElementById("lightboxImage");
-
-    const closeLightbox =
-      document.getElementById("closeLightbox");
-
-
-    projects.forEach(project => {
-
-      project.addEventListener("click", () => {
-
-        const image =
-          project.querySelector("img");
-
-        lightboxImage.src = image.src;
-
-        lightbox.classList.add("active");
-
-      });
-
-    });
-
-
-    closeLightbox.addEventListener("click", () => {
-
-      lightbox.classList.remove("active");
-
-    });
-
-
-    lightbox.addEventListener("click", (e) => {
-
-      if (e.target === lightbox) {
-
-        lightbox.classList.remove("active");
-
-      }
-
-    });
-
-
-    document.addEventListener("keydown", (e) => {
-
-      if (e.key === "Escape") {
-
-        lightbox.classList.remove("active");
-
-      }
-
-    });
-
-  </script>
 
 </body>
 </html>
