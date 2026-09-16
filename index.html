@@ -1,17 +1,19 @@
-
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Akbar Nubijak</title>
+    <title>Akbar Nubijak — Portfolio</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -20,243 +22,1105 @@
             color: #222;
         }
 
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #6c63ff;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
             width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
         }
 
-        /* HEADER */
-        header {
+
+        /* =========================
+           HOME
+        ========================= */
+
+        #home {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             text-align: center;
-            padding: 80px 20px 50px;
+
+            padding: 120px 20px 70px;
+        }
+
+        .home-content {
+            animation: fadeUp 1s ease;
         }
 
         .profile {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
+
             border-radius: 50%;
             object-fit: cover;
+
+            border: 5px solid white;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
+
             margin-bottom: 25px;
-            border: 4px solid white;
-            box-shadow: 0 5px 20px rgba(0,0,0,.1);
         }
 
-        header h1 {
-            font-size: 42px;
+        .home-content h1 {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .home-content h1 span {
+            color: #6c63ff;
+        }
+
+        .home-content p {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            background: #222;
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #6c63ff;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
-        header p {
-            color: #777;
-            font-size: 17px;
+        .section-title p {
+            color: #888;
         }
 
-        /* CONTENT */
-        section {
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-box {
             background: white;
-            padding: 35px;
-            margin-bottom: 20px;
+
+            padding: 40px;
+
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.05);
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.05);
         }
 
-        section h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .about p {
+        .about-box p {
             color: #666;
-            line-height: 1.8;
+            line-height: 1.9;
+            font-size: 16px;
         }
 
-        /* INFO */
+
+        /* =========================
+           DATA DIRI
+        ========================= */
+
         .info {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
         }
 
         .box {
-            background: #f7f7f7;
-            padding: 20px;
-            border-radius: 12px;
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
         }
 
         .box span {
             display: block;
-            color: #888;
+
+            color: #999;
+
             font-size: 13px;
-            margin-bottom: 5px;
+
+            margin-bottom: 8px;
         }
 
         .box strong {
             font-size: 16px;
         }
 
-        /* HOBBY */
+
+        /* =========================
+           KEAHLIAN
+        ========================= */
+
+        .skills {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .skill {
+            background: white;
+
+            padding: 30px 15px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-7px);
+            background: #222;
+            color: white;
+        }
+
+        .skill-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .skill h3 {
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           PENGALAMAN
+        ========================= */
+
+        .experience {
+            display: grid;
+
+            gap: 20px;
+        }
+
+        .experience-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            border-left: 5px solid #6c63ff;
+        }
+
+        .experience-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .experience-card .year {
+            color: #6c63ff;
+
+            font-size: 14px;
+
+            margin-bottom: 12px;
+        }
+
+        .experience-card p {
+            color: #666;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           PROJECT
+        ========================= */
+
+        .projects {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .project {
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+        }
+
+        .project-image {
+            height: 180px;
+
+            background: #ddd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 50px;
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           HOBI
+        ========================= */
+
         .hobbies {
             display: flex;
-            gap: 10px;
+
+            justify-content: center;
+
+            gap: 12px;
+
             flex-wrap: wrap;
         }
 
         .hobby {
             background: #222;
+
             color: white;
-            padding: 10px 18px;
+
+            padding: 11px 20px;
+
             border-radius: 50px;
+
             font-size: 14px;
+
+            transition: 0.3s;
         }
 
-        /* FOOTER */
+        .hobby:hover {
+            background: #6c63ff;
+        }
+
+
+        /* =========================
+           KONTAK
+        ========================= */
+
+        .contact {
+            background: #222;
+
+            color: white;
+
+            padding: 50px 30px;
+
+            border-radius: 25px;
+
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #bbb;
+
+            margin-bottom: 25px;
+        }
+
+        .contact a {
+            display: inline-block;
+
+            background: white;
+
+            color: #222;
+
+            text-decoration: none;
+
+            padding: 12px 22px;
+
+            border-radius: 50px;
+
+            transition: 0.3s;
+        }
+
+        .contact a:hover {
+            background: #6c63ff;
+
+            color: white;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
         footer {
             text-align: center;
-            padding: 30px;
+
+            padding: 35px;
+
             color: #888;
+
             font-size: 14px;
         }
 
-        /* MOBILE */
-        @media (max-width: 600px) {
 
-            header {
-                padding-top: 50px;
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
 
-            header h1 {
-                font-size: 32px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                gap: 13px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-menu a {
+                font-size: 12px;
+            }
+
+            .home-content h1 {
+                font-size: 38px;
+            }
+
+            .home-content p {
+                font-size: 15px;
             }
 
             .info {
                 grid-template-columns: 1fr;
             }
 
-            section {
-                padding: 25px;
+            .skills {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <!-- PROFIL -->
-        <header>
+<!-- =========================
+     NAVBAR
+========================= -->
 
-            <!-- Ganti foto.jpg dengan foto kamu -->
-            <img
-                src="diri.png"
-                alt="Foto Akbar"
-                class="profile"
-            >
+<nav>
 
-            <h1>Akbar Nubijak</h1>
+    <div class="nav-container">
 
-            <p>
-                Siswa Desain Komunikasi Visual
-            </p>
+        <div class="logo">
+            Akbar<span>.</span>
+        </div>
 
-        </header>
+        <ul class="nav-menu">
 
+            <li>
+                <a href="#home">Home</a>
+            </li>
 
-        <!-- TENTANG SAYA -->
-        <section class="about">
+            <li>
+                <a href="#about">Tentang</a>
+            </li>
 
-            <h2>Tentang Saya</h2>
+            <li>
+                <a href="#profil">Data Diri</a>
+            </li>
 
-            <p>
-             Halo! Saya Akbar Nubijak, siswa DKV yang memiliki ketertarikan pada dunia kreatif dan visual. 
-                Saya senang mengeksplorasi hal-hal baru dalam desain grafis, fotografi, dan videografi, 
-                serta terus mengembangkan kemampuan melalui berbagai proyek dan pengalaman kreatif.
-            </p>
+            <li>
+                <a href="#skills">Keahlian</a>
+            </li>
 
-        </section>
+            <li>
+                <a href="#experience">Pengalaman</a>
+            </li>
 
+            <li>
+                <a href="#projects">Project</a>
+            </li>
 
-        <!-- DATA DIRI -->
-        <section>
+            <li>
+                <a href="#contact">Kontak</a>
+            </li>
 
-            <h2>Profil</h2>
-
-            <div class="info">
-
-                <div class="box">
-                    <span>Nama</span>
-                    <strong>Akbar Nubijak</strong>
-                </div>
-
-                <div class="box">
-                    <span>Sekolah</span>
-                    <strong>SMK PGRI 1 Tangerang</strong>
-                </div>
-
-                <div class="box">
-                    <span>Jurusan</span>
-                    <strong>Desain Komunikasi Visual</strong>
-                </div>
-
-                <div class="box">
-                    <span>Organisasi</span>
-                    <strong>OSIS & DKV Production</strong>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- HOBI -->
-        <section>
-
-            <h2>Hobi</h2>
-
-            <div class="hobbies">
-
-                <div class="hobby">
-                    📷 Fotografi
-                </div>
-
-                <div class="hobby">
-                    🎨 Desain Grafis
-                </div>
-
-                <div class="hobby">
-                    🎥 Videografi
-                </div>
-
-                <div class="hobby">
-                    🎬 Editing
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ORGANISASI -->
-        <section class="about">
-
-            <h2>Organisasi</h2>
-
-            <p>
-               Saya aktif dalam kegiatan MPK/OSIS sebagai bagian dari bidang Media/PDD, 
-                serta terlibat dalam DKV Production, khususnya sebagai bagian dari Divisi Desain Grafis. 
-                Melalui berbagai kegiatan dan proyek tersebut, saya terus mengembangkan kemampuan dan
-                pengalaman di bidang kreatif.
-            </p>
-
-        </section>
-
-
-        <footer>
-            © 2026 Akbar Nubijak
-        </footer>
+        </ul>
 
     </div>
+
+</nav>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home">
+
+    <div class="home-content">
+
+        <!-- FOTO -->
+        <img
+            src="diri.png"
+            alt="Foto Akbar"
+            class="profile"
+        >
+
+        <h1>
+            Akbar <span>Nubijak</span>
+        </h1>
+
+        <p>
+            Siswa Desain Komunikasi Visual
+        </p>
+
+        <a
+            href="#about"
+            class="button"
+        >
+            Kenal Lebih Dekat
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<div class="container">
+
+
+<!-- =========================
+     TENTANG
+========================= -->
+
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>Tentang Saya</h2>
+
+        <p>
+            Sedikit tentang saya
+        </p>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <p>
+
+            Halo! Saya Akbar Nubijak, siswa DKV yang
+            memiliki ketertarikan pada dunia kreatif dan
+            visual. Saya senang mengeksplorasi hal-hal baru
+            dalam desain grafis, fotografi, dan videografi,
+            serta terus mengembangkan kemampuan melalui
+            berbagai proyek dan pengalaman kreatif.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DATA DIRI
+========================= -->
+
+<section id="profil">
+
+    <div class="section-title">
+
+        <h2>Data Diri</h2>
+
+        <p>
+            Informasi singkat tentang saya
+        </p>
+
+    </div>
+
+
+    <div class="info">
+
+        <div class="box">
+
+            <span>Nama</span>
+
+            <strong>
+                Akbar Nubijak
+            </strong>
+
+        </div>
+
+
+        <div class="box">
+
+            <span>Sekolah</span>
+
+            <strong>
+                SMK PGRI 1 Tangerang
+            </strong>
+
+        </div>
+
+
+        <div class="box">
+
+            <span>Jurusan</span>
+
+            <strong>
+                Desain Komunikasi Visual
+            </strong>
+
+        </div>
+
+
+        <div class="box">
+
+            <span>Organisasi</span>
+
+            <strong>
+                MPK / OSIS
+            </strong>
+
+        </div>
+
+
+        <div class="box">
+
+            <span>Divisi</span>
+
+            <strong>
+                Media / PDD
+            </strong>
+
+        </div>
+
+
+        <div class="box">
+
+            <span>DKV Production</span>
+
+            <strong>
+                Divisi Desain Grafis
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     KEAHLIAN
+========================= -->
+
+<section id="skills">
+
+    <div class="section-title">
+
+        <h2>Keahlian</h2>
+
+        <p>
+            Bidang yang saya pelajari
+        </p>
+
+    </div>
+
+
+    <div class="skills">
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                🎨
+            </div>
+
+            <h3>
+                Desain Grafis
+            </h3>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                📷
+            </div>
+
+            <h3>
+                Fotografi
+            </h3>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                🎥
+            </div>
+
+            <h3>
+                Videografi
+            </h3>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                🎬
+            </div>
+
+            <h3>
+                Video Editing
+            </h3>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PENGALAMAN
+========================= -->
+
+<section id="experience">
+
+    <div class="section-title">
+
+        <h2>Pengalaman</h2>
+
+        <p>
+            Kegiatan dan pengalaman kreatif
+        </p>
+
+    </div>
+
+
+    <div class="experience">
+
+
+        <div class="experience-card">
+
+            <h3>
+                Media / PDD MPK & OSIS
+            </h3>
+
+            <div class="year">
+                2025 — 2026
+            </div>
+
+            <p>
+
+                Terlibat dalam publikasi, dokumentasi,
+                pembuatan desain, serta kebutuhan visual
+                untuk berbagai kegiatan sekolah.
+
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <h3>
+                DKV Production
+            </h3>
+
+            <div class="year">
+                Divisi Desain Grafis
+            </div>
+
+            <p>
+
+                Berperan dalam pembuatan berbagai desain
+                dan kebutuhan visual serta ikut
+                mengembangkan kegiatan kreatif DKV Production.
+
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <h3>
+                Event & School Project
+            </h3>
+
+            <div class="year">
+                2025 — 2026
+            </div>
+
+            <p>
+
+                Mengerjakan berbagai proyek desain,
+                dokumentasi acara, fotografi, videografi,
+                pembuatan konten, dan proyek kreatif sekolah.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJECT
+========================= -->
+
+<section id="projects">
+
+    <div class="section-title">
+
+        <h2>Project</h2>
+
+        <p>
+            Beberapa project yang pernah dikerjakan
+        </p>
+
+    </div>
+
+
+    <div class="projects">
+
+
+        <div class="project">
+
+            <div class="project-image">
+                🎨
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Poster Digital
+                </h3>
+
+                <p>
+                    Proyek desain poster untuk kebutuhan
+                    lomba dan kegiatan sekolah.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-image">
+                📷
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Dokumentasi Event
+                </h3>
+
+                <p>
+                    Dokumentasi fotografi dan video
+                    berbagai kegiatan sekolah.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-image">
+                🎬
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Short Movie
+                </h3>
+
+                <p>
+                    Proyek film pendek yang dikerjakan
+                    bersama tim kreatif.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     HOBI
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>Hobi</h2>
+
+        <p>
+            Hal yang saya sukai
+        </p>
+
+    </div>
+
+
+    <div class="hobbies">
+
+        <div class="hobby">
+            📷 Fotografi
+        </div>
+
+        <div class="hobby">
+            🎨 Desain Grafis
+        </div>
+
+        <div class="hobby">
+            🎥 Videografi
+        </div>
+
+        <div class="hobby">
+            🎬 Editing
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     KONTAK
+========================= -->
+
+<section id="contact">
+
+    <div class="contact">
+
+        <h2>
+            Let's Connect
+        </h2>
+
+        <p>
+            Tertarik melihat karya atau ingin
+            berkolaborasi?
+        </p>
+
+        <a href="mailto:emailkamu@gmail.com">
+            Hubungi Saya
+        </a>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    © 2026 Akbar Nubijak
+
+</footer>
+
+
 
 </body>
 </html>
