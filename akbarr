@@ -1,0 +1,552 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Akbar Nubijak — Portfolio</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #6c63ff;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        #home {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 20px 70px;
+        }
+
+        .home-content {
+            animation: fadeUp 1s ease;
+        }
+
+        .profile {
+            width: 160px;
+            height: 160px;
+
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 5px solid white;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
+
+            margin-bottom: 25px;
+        }
+
+        .home-content h1 {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .home-content h1 span {
+            color: #6c63ff;
+        }
+
+        .home-content p {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            background: #222;
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #6c63ff;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-box {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.05);
+        }
+
+        .about-box p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           DATA DIRI
+        ========================= */
+
+        .info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .box {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .box span {
+            display: block;
+
+            color: #999;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+        .box strong {
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           KEAHLIAN
+        ========================= */
+
+        .skills {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .skill {
+            background: white;
+
+            padding: 30px 15px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-7px);
+            background: #222;
+            color: white;
+        }
+
+        .skill-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .skill h3 {
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           PENGALAMAN
+        ========================= */
+
+        .experience {
+            display: grid;
+
+            gap: 20px;
+        }
+
+        .experience-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            border-left: 5px solid #6c63ff;
+        }
+
+        .experience-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .experience-card .year {
+            color: #6c63ff;
+
+            font-size: 14px;
+
+            margin-bottom: 12px;
+        }
+
+        .experience-card p {
+            color: #666;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           PROJECT
+        ========================= */
+
+        .projects {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .project {
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+        }
+
+        .project-image {
+            height: 180px;
+
+            background: #ddd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 50px;
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           HOBI
+        ========================= */
+
+        .hobbies {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .hobby {
+            background: #222;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 50px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .hobby:hover {
+            background: #6c63ff;
+        }
+
+
+        /* =========================
+           KONTAK
+        ========================= */
+
+        .contact {
+            background: #222;
+
+            color: white;
+
+            padding: 50px 30px;
+
+            border-radius: 25px;
+
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #bbb;
+
+            margin-bottom: 25px;
+        }
+
+        .contact a {
+            display: inline-block;
+
+            background: white;
+
+            color: #222;
+
+            text-decoration: none;
+
+            padding: 12px 22px;
+
+            border-radius: 50px;
+
+            transition: 0.3s;
+        }
+
+        .contact a:hover {
+            background: #6c63ff;
+
+            color: white;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 35px;
+
+            color: #888;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                gap: 13px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-menu a {
+                font-size: 12px;
+            }
+
+            .home-content h1 {
+                font-size: 38px;
+            }
+
+            .home-content p {
+                font-size: 15px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .projects {
+                grid-template-columns: 1
+```
